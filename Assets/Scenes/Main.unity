@@ -139,9 +139,10 @@ MonoBehaviour:
   impulseSpeed: 5
   angleIncrement: 25
   forwardImpulseMult: 1.5
-  maxAngleIndex: 2
+  maxAngleIndex: 1
   angleCorrectionAmount: 0.2
   targetObject: {fileID: 1524566801}
+  moveSpeed: 0
 --- !u!61 &468348242
 BoxCollider2D:
   m_ObjectHideFlags: 0
