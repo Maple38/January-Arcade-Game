@@ -12,10 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float forwardImpulseMult;
     [SerializeField] private int maxAngleIndex;
-    [SerializeField] private float angleCorrectionAmount;
-    [SerializeField] private GameObject targetObject;
     [SerializeField] private float moveSpeed;
-    private Transform _targetPos;
     private Rigidbody2D _rb;
     private float _angleIndex;
     private float _angleMult;
@@ -31,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _targetPos = targetObject.GetComponent<Transform>();
         _rb = GetComponent<Rigidbody2D>();
         _hardLeftAction = InputSystem.actions.FindAction("HardLeft");
         _softLeftAction = InputSystem.actions.FindAction("SoftLeft");
