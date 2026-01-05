@@ -18,8 +18,8 @@ public class BoundaryScript : MonoBehaviour
         if (boundaryEnabled)
         {
             transform.position = new Vector3(
-                Mathf.Clamp(transform.position.x, bounds.min.x + bounds.center.x, bounds.max.x + bounds.center.x),
-                Mathf.Clamp(transform.position.y, bounds.min.y + bounds.center.y, bounds.max.y + bounds.center.y),
+                Mathf.Clamp(transform.position.x, bounds.min.x, bounds.max.x),
+                Mathf.Clamp(transform.position.y, bounds.min.y, bounds.max.y),
                 transform
                     .position.z);
         }
