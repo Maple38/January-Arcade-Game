@@ -569,6 +569,18 @@ MonoBehaviour:
   scanRange: 12
   crosshairObject: {fileID: 258939110}
   ramRange: 0
+--- !u!114 &468348249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468348238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ea6aaa70eec4bf3a49c661491ffc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +948,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       insertIndex: -1
       addedObject: {fileID: 468348248}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 468348249}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
