@@ -1,5 +1,4 @@
-using System.Collections;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -24,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
     private void TargetScan()
     {
         RaycastHit2D scanResult = Physics2D.Raycast
-            (new Vector2(this.transform.position.x, this.transform.position.y), Vector2.right, scanRange, layerMask);
+            (new Vector2(transform.position.x, transform.position.y), Vector2.up, scanRange, layerMask);
         if (scanResult.collider)
         {
             _targetPos = scanResult.centroid;
@@ -35,5 +34,13 @@ public class PlayerAttack : MonoBehaviour
         {
             _crosshairSr.enabled = false;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(transform.position, Vector2.up * scanRange);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, Vector2.up * targetingRange);
     }
 }
