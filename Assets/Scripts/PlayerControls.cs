@@ -28,7 +28,7 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        // A and D
+        // Q and E by default
         if (_hardLeftAction.WasPressedThisFrame())
         {
             _playerMovement.Impulse(90);
@@ -38,7 +38,7 @@ public class PlayerControls : MonoBehaviour
             _playerMovement.Impulse(-90);
         }
 
-        // Q and E
+        // A and D by default
         if (_softLeftAction.IsPressed())
         {
             _playerMovement.AngleAdd(1);
@@ -52,7 +52,7 @@ public class PlayerControls : MonoBehaviour
             _playerMovement.AngleSet(0);
         }
 
-        // W and S
+        // W and S by default
         if (_forwardAction.WasPressedThisFrame())
         {
             _playerMovement.Impulse(0);
