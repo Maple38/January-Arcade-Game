@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -12,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float forwardImpulseMult;
     [SerializeField] private int maxAngleIndex;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float driftBackSpeed;
+
     private Rigidbody2D _rb;
     private float _angleIndex;
     private float _angleMult;
+    private Bounds _bounds;
 
     private InputAction _hardLeftAction;
     private InputAction _softLeftAction;
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _bounds = GetComponent<BoundaryScript>().bounds;
+
         _hardLeftAction = InputSystem.actions.FindAction("HardLeft");
         _softLeftAction = InputSystem.actions.FindAction("SoftLeft");
         _hardRightAction = InputSystem.actions.FindAction("HardRight");
@@ -77,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
         _angleIndex = Mathf.Clamp(_angleIndex, -maxAngleIndex, maxAngleIndex);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, _angleIndex * angleIncrement);
+
+        if (_rb.linearVelocityY < 0.07 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - (driftBackSpeed * Time.deltaTime),
+                transform.position.z);
+        }
     }
 
     void Impulse(float impulseAngle)
