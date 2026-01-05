@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         _angleIndex = Mathf.Clamp(_angleIndex, -maxAngleIndex, maxAngleIndex);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, _angleIndex * angleIncrement);
 
-        if (_rb.linearVelocityY < 0.07 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
+        if (Mathf.Abs(_rb.linearVelocityY) < 0.01 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - (driftBackSpeed * Time.deltaTime),
                 transform.position.z);
