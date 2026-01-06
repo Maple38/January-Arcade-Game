@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
+    private PlayerAttack _playerAttack;
     
     private InputAction _hardLeftAction;
     private InputAction _softLeftAction;
@@ -16,6 +17,7 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerAttack = GetComponent<PlayerAttack>();
         
         _hardLeftAction = InputSystem.actions.FindAction("HardLeft");
         _softLeftAction = InputSystem.actions.FindAction("SoftLeft");
@@ -52,14 +54,19 @@ public class PlayerControls : MonoBehaviour
             _playerMovement.AngleSet(0);
         }
 
-        // W and S by default
+        // W
         if (_forwardAction.WasPressedThisFrame())
         {
             _playerMovement.Impulse(0);
         }
-        else if (_backAction.WasPressedThisFrame())
+
+        if (_backAction.IsPressed())
         {
-            _playerMovement.Impulse(180);
+            _playerAttack.ChargeRam();
+        }
+        else if (_backAction.WasReleasedThisFrame())
+        {
+            _playerAttack.TriggerRam();
         }
     }
 }

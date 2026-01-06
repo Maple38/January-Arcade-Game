@@ -9,13 +9,14 @@ public class PlayerAttack : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
-    [Header("Targeting Settings")] 
-    [SerializeField] private float targetingRange;
+    [Header("Targeting Settings")] [SerializeField]
+    private float targetingRange;
+
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float scanRange;
     [SerializeField] private GameObject crosshairObject;
     [SerializeField] private float ramSpeedMult;
-    
+
     private float _targetingGracePeriod;
     private Vector2 _targetPos;
     private SpriteRenderer _crosshairSr;
@@ -25,13 +26,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float ramChargeMax;
     [SerializeField] private float ramPowerMin;
     [SerializeField] private float ramPowerMax;
-    public float ramChargeMultDefault;
-    
+    [SerializeField] private float ramCooldownMax;
+
     public float RamPowerCurrent { get; private set; }
     public Boolean RamInProgress { get; private set; }
-    [DoNotSerialize] public float ramChargeMult;
+    [DoNotSerialize] public float ramChargeMult = 1;
     private float _ramCooldownCurrent;
-    private float _ramCooldownMax;
     private float _ramCharge;
 
     private void Awake()
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         TargetScan();
         if (_ramCooldownCurrent >= 0)
         {
-            _ramCooldownCurrent -= Time.deltaTime;
+            _ramCooldownCurrent -= Time.deltaTime * ramChargeMult;
         }
 
         if (_ramCharge >= 0)
@@ -109,7 +109,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void RamRelease()
+    public void TriggerRam()
     {
         if (_targetReady || _targetingGracePeriod >= 0)
         {
@@ -125,7 +125,7 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 RamInProgress = true;
-                _ramCooldownCurrent = _ramCooldownMax;
+                _ramCooldownCurrent = ramCooldownMax;
                 StartCoroutine(RamCoroutine(transform.position, _targetPos));
             }
         }
