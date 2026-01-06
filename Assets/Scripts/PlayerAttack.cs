@@ -9,9 +9,8 @@ public class PlayerAttack : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
-    [Header("Targeting Settings")] [SerializeField]
-    private float targetingRange;
-
+    [Header("Targeting")]
+    [SerializeField] private float targetingRange;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float scanRange;
     [SerializeField] private GameObject crosshairObject;
@@ -22,7 +21,8 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer _crosshairSr;
     private Boolean _targetReady;
 
-    [Header("Ramming")] [SerializeField] private float ramChargeMin;
+    [Header("Ramming")]
+    [SerializeField] private float ramChargeMin;
     [SerializeField] private float ramChargeMax;
     [SerializeField] private float ramPowerMin;
     [SerializeField] private float ramPowerMax;
