@@ -18,14 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private Bounds _bounds;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _bounds = GetComponent<BoundaryScript>().bounds;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _angleIndex = Mathf.Clamp(_angleIndex, -maxAngleIndex, maxAngleIndex);
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, _angleIndex * angleIncrement);

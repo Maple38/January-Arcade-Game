@@ -13,7 +13,7 @@ public class PlayerControls : MonoBehaviour
     private InputAction _backAction;
     private InputAction _modAction;
 
-    void Start()
+    private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         
@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour
         _modAction = InputSystem.actions.FindAction("ModAction");
     }
 
-    void Update()
+    private void Update()
     {
         // Q and E by default
         if (_hardLeftAction.WasPressedThisFrame())

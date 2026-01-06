@@ -4,7 +4,8 @@ using UnityEngine.Animations;
 public class CrosshairScript : MonoBehaviour
 {
     [SerializeField] private float rotSpeed;
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         transform.Rotate(0, 0,rotSpeed);
     }
