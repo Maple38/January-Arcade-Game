@@ -25,11 +25,11 @@ public class PlayerAttack : MonoBehaviour
     [Header("Ramming")]
     [SerializeField] private float ramChargeMin;
     [SerializeField] private float ramChargeMax;
-    [SerializeField] private float ramPowerMin;
-    [SerializeField] private float ramPowerMax;
+    [SerializeField] private int ramPowerMin;
+    [SerializeField] private int ramPowerMax;
     [SerializeField] private float ramCooldownMax;
 
-    public float RamPowerCurrent { get; private set; }
+    public int RamPowerCurrent { get; private set; }
     public Boolean RamInProgress { get; private set; }
     [DoNotSerialize] public float ramChargeMult = 1;
     private float _ramCooldownCurrent;
