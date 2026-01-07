@@ -1,17 +1,9 @@
-using System;
 using UnityEngine;
 
 public class BoundaryScript : MonoBehaviour
 {
     public Bounds bounds;
-    public Boolean boundaryEnabled = true;
-
-    // Renders the boundary box when the object is selected
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(bounds.center, bounds.size);
-    }
+    public bool boundaryEnabled = true;
 
     private void Update()
     {
@@ -23,5 +15,12 @@ public class BoundaryScript : MonoBehaviour
                 transform
                     .position.z);
         }
+    }
+
+    // Renders the boundary box when the object is selected
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(bounds.center, bounds.size);
     }
 }

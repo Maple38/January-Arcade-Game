@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class CrosshairScript : MonoBehaviour
 {
@@ -7,6 +6,6 @@ public class CrosshairScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(0, 0,rotSpeed);
+        transform.Rotate(0, 0, rotSpeed);
     }
 }

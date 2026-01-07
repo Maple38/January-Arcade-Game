@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -15,12 +12,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float scanRange;
     [SerializeField] private GameObject crosshairObject;
-    [SerializeField] private float ramSpeedMult;
-
     private float _targetingGracePeriod;
     private Vector2 _targetPos;
+    private bool _targetReady;
     private SpriteRenderer _crosshairSr;
-    private Boolean _targetReady;
 
     [Header("Ramming")]
     [SerializeField] private float ramChargeMin;
@@ -28,12 +23,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int ramPowerMin;
     [SerializeField] private int ramPowerMax;
     [SerializeField] private float ramCooldownMax;
+    [DoNotSerialize] public float ramChargeMult = 1;
+    [SerializeField] private float ramSpeedMult;
+    private float _ramCharge;
+    private float _ramCooldownCurrent;
 
     public int RamPowerCurrent { get; private set; }
-    public Boolean RamInProgress { get; private set; }
-    [DoNotSerialize] public float ramChargeMult = 1;
-    private float _ramCooldownCurrent;
-    private float _ramCharge;
+    public bool RamInProgress { get; private set; }
 
     private void Awake()
     {
@@ -56,10 +52,23 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(transform.position, Vector2.up * scanRange);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, Vector2.up * targetingRange);
+
+        // Gizmos.color = Color.red;
+        // Gizmos.DrawRay(transform.position,
+        //     new Vector2(Mathf.Cos((transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad),
+        //         Mathf.Sin((transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad)) * 4);
+    }
+
     private void TargetScan()
     {
-        float zRotation = (transform.localEulerAngles.z + 90) * Mathf.Deg2Rad;
-        RaycastHit2D scanResult = Physics2D.Raycast
+        var zRotation = (transform.localEulerAngles.z + 90) * Mathf.Deg2Rad;
+        var scanResult = Physics2D.Raycast
         (new Vector2(transform.position.x, transform.position.y),
             new Vector2(Mathf.Cos(zRotation), Mathf.Sin(zRotation)),
             scanRange, layerMask);
@@ -77,19 +86,6 @@ public class PlayerAttack : MonoBehaviour
             _targetReady = false;
             _targetingGracePeriod -= Time.deltaTime;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawRay(transform.position, Vector2.up * scanRange);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, Vector2.up * targetingRange);
-
-        // Gizmos.color = Color.red;
-        // Gizmos.DrawRay(transform.position,
-        //     new Vector2(Mathf.Cos((transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad),
-        //         Mathf.Sin((transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad)) * 4);
     }
 
     public void ChargeRam()
@@ -137,7 +133,7 @@ public class PlayerAttack : MonoBehaviour
         float moveProgress = 0;
         while (moveProgress <= 1f)
         {
-            float moveDelta = Time.deltaTime * ramSpeedMult;
+            var moveDelta = Time.deltaTime * ramSpeedMult;
             moveProgress += moveDelta;
             transform.position = Vector2.LerpUnclamped(start, end, moveProgress);
             yield return new WaitForFixedUpdate();

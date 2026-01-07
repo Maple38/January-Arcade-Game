@@ -3,10 +3,10 @@ using UnityEngine;
 public class EnemyMain : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
-    private int _health;
     public int contactDamage;
+    private int _health;
 
-    void Awake()
+    private void Awake()
     {
         _health = maxHealth;
     }
@@ -27,6 +27,5 @@ public class EnemyMain : MonoBehaviour
 
     public void Knockback(Vector2 vector)
     {
-        
     }
 }

@@ -1,24 +1,24 @@
 using UnityEngine;
 
-public class PlayerMain: MonoBehaviour
+public class PlayerMain : MonoBehaviour
 {
-    private int _health;
-    private PlayerAttack _playerAttack;
-    private float _iFrames;
     [SerializeField] private float damageCooldown;
     [SerializeField] private int maxHealth;
     [SerializeField] private int contactDamage;
     [SerializeField] private float kbPowerDefault;
+    private int _health;
+    private float _iFrames;
     private float _kbPower;
+    private PlayerAttack _playerAttack;
 
-    void Awake()
+    private void Awake()
     {
         _playerAttack = GetComponent<PlayerAttack>();
         _health = maxHealth;
         _kbPower = kbPowerDefault;
     }
 
-    void Update()
+    private void Update()
     {
         if (_iFrames > 0)
         {
@@ -26,7 +26,7 @@ public class PlayerMain: MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         var enemy = col.gameObject;
         if (enemy.CompareTag("Enemy"))
@@ -53,7 +53,7 @@ public class PlayerMain: MonoBehaviour
     {
         _iFrames = Mathf.Max(_iFrames, duration);
     }
-    
+
     public void Damage(int amount)
     {
         Invincibility(damageCooldown);
@@ -68,5 +68,4 @@ public class PlayerMain: MonoBehaviour
     {
         // TODO
     }
-    
 }

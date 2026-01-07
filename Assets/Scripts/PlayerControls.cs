@@ -3,22 +3,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    private PlayerMovement _playerMovement;
-    private PlayerAttack _playerAttack;
-    
-    private InputAction _hardLeftAction;
-    private InputAction _softLeftAction;
-    private InputAction _hardRightAction;
-    private InputAction _softRightAction;
-    private InputAction _forwardAction;
     private InputAction _backAction;
+    private InputAction _forwardAction;
+
+    private InputAction _hardLeftAction;
+    private InputAction _hardRightAction;
     private InputAction _modAction;
+    private PlayerAttack _playerAttack;
+    private PlayerMovement _playerMovement;
+    private InputAction _softLeftAction;
+    private InputAction _softRightAction;
 
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttack = GetComponent<PlayerAttack>();
-        
+
         _hardLeftAction = InputSystem.actions.FindAction("HardLeft");
         _softLeftAction = InputSystem.actions.FindAction("SoftLeft");
         _hardRightAction = InputSystem.actions.FindAction("HardRight");

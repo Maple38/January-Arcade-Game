@@ -4,27 +4,22 @@ using UnityEngine.Serialization;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float impulseSpeed;
-
-    [FormerlySerializedAs("turnStep")] [SerializeField]
-    private float angleIncrement;
-
+    [FormerlySerializedAs("turnStep")]
+    [SerializeField] private float angleIncrement;
     [SerializeField] private float forwardImpulseMult;
     [SerializeField] private int maxAngleIndex;
     [SerializeField] private float driftBackSpeed;
-
-    private Rigidbody2D _rb;
     private float _angleIndex;
     private float _angleMult;
     private Bounds _bounds;
+    private Rigidbody2D _rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _bounds = GetComponent<BoundaryScript>().bounds;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         _angleIndex = Mathf.Clamp(_angleIndex, -maxAngleIndex, maxAngleIndex);
@@ -37,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(_rb.linearVelocityY) < 0.01 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - (driftBackSpeed * Time.deltaTime),
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y - driftBackSpeed * Time.deltaTime,
                 transform.position.z);
         }
     }
@@ -65,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             internalImpulseSpeed = impulseSpeed;
         }
 
-        Vector2 force = new Vector2(
+        var force = new Vector2(
             -Mathf.Sin(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z)) * internalImpulseSpeed,
             Mathf.Cos(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z)) * internalImpulseSpeed);
 
