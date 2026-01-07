@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class PlayerAttack : MonoBehaviour
 {
     private Rigidbody2D _rb;
+    private PlayerMain _playerMain;
 
     [Header("Targeting")]
     [SerializeField] private float targetingRange;
