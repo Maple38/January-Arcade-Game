@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &79013995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79013996}
+  - component: {fileID: 79013997}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &79013996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79013995}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.026458025, y: -0.08206497, z: 0.043936383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79013997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79013995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3777b30105b54aaf8d799fdb28fc0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreMult: 10
 --- !u!1 &189241439
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,11 +320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
       propertyPath: m_LocalScale.z
@@ -381,11 +426,11 @@ PrefabInstance:
       objectReference: {fileID: 4585187724818807033, guid: 0709ed5d95d964e3a8975f6129f75a0c, type: 3}
     - target: {fileID: 7878350319992209165, guid: 3057e93eba6ba496eb886a5b79d53e27, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3057e93eba6ba496eb886a5b79d53e27, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 3057e93eba6ba496eb886a5b79d53e27, type: 3}
       propertyPath: m_LocalScale.z
@@ -503,8 +548,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.04}
-    oldSize: {x: 0.18, y: 0.25}
-    newSize: {x: 0.18, y: 0.25}
+    oldSize: {x: 1.125, y: 1.5625}
+    newSize: {x: 1.125, y: 1.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -572,13 +617,13 @@ MonoBehaviour:
     m_Bits: 64
   scanRange: 12
   crosshairObject: {fileID: 258939110}
-  ramSpeedMult: 4
   ramChargeMin: 0.2
   ramChargeMax: 2
-  ramPowerMin: 1
-  ramPowerMax: 1
+  ramPowerMin: 0
+  ramPowerMax: 0
   ramCooldownMax: 3
   ramChargeMult: 1
+  ramSpeedMult: 4
 --- !u!114 &468348249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,11 +930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalScale.z
@@ -962,6 +1007,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 468348249}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
+--- !u!1 &1999650467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999650468}
+  m_Layer: 0
+  m_Name: Road Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999650468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999650467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.026458025, y: -0.08206497, z: 0.043936383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -972,3 +1048,5 @@ SceneRoots:
   - {fileID: 309721245}
   - {fileID: 258939109}
   - {fileID: 189241442}
+  - {fileID: 1999650468}
+  - {fileID: 79013996}
