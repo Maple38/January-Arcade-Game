@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float forwardImpulseMult;
     [SerializeField] private int maxAngleIndex;
     [SerializeField] private float driftBackSpeed;
+    [DoNotSerialize] public float speedMult = 1;
     private float _angleIndex;
     private float _angleMult;
     private Bounds _bounds;
@@ -54,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (impulseAngle == 0)
         {
-            internalImpulseSpeed = impulseSpeed * forwardImpulseMult;
+            internalImpulseSpeed = impulseSpeed * forwardImpulseMult * speedMult;
         }
         else
         {
-            internalImpulseSpeed = impulseSpeed;
+            internalImpulseSpeed = impulseSpeed * speedMult;
         }
 
         var force = new Vector2(
