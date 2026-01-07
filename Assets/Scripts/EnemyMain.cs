@@ -9,4 +9,18 @@ public class EnemyMain : MonoBehaviour
     {
         _health = maxHealth;
     }
+
+    void Damage(int amount)
+    {
+        _health -= amount;
+        if (_health >= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        // TODO
+    }
 }
