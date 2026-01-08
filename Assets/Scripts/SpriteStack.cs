@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpriteStack : MonoBehaviour
 {
     [SerializeField] private GameObject[] layers;
+    [SerializeField] private Vector2[] multipliers;
     [SerializeField] private float vMult;
     [SerializeField] private float hMult;
 
@@ -19,7 +20,12 @@ public class SpriteStack : MonoBehaviour
         for (int i = 0; i < _layerCount; i++)
         {
             _transforms[i] = layers[i].transform;
-            _individualMults[i] = layers[i].GetComponent<SpriteStackingProperties>().multipliers;
+        }
+
+        _individualMults[0] = multipliers[0];
+        for (int i = 1; i < _layerCount; i++)
+        {
+            _individualMults[i] = _individualMults[i - 1] + multipliers[i];
         }
     }
 
