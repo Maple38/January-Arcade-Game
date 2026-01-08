@@ -123,7 +123,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Layer1
+  - name: Wheels
     originalName: 
     pivot: {x: 0.5, y: 0.5416667}
     alignment: 9
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 69
       width: 22
       height: 48
-    spriteID: 2c38b939699c64366a597b7c677c747e
+    spriteID: 819ba452b327549579183e199be20f98
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,7 +144,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 69}
-  - name: Layer2
+  - name: Chassis
     originalName: 
     pivot: {x: 0.5, y: 0.50877196}
     alignment: 9
@@ -156,7 +156,7 @@ ScriptedImporter:
       y: 4
       width: 26
       height: 57
-    spriteID: 792002b367d6e4368a9c1df3d38d8bf2
+    spriteID: 7185c6cca9f524338a134ce73a2cfd2e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -165,7 +165,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Layer3
+  - name: Windows
     originalName: 
     pivot: {x: 0.5, y: 0.58536583}
     alignment: 9
@@ -177,7 +177,7 @@ ScriptedImporter:
       y: 4
       width: 20
       height: 41
-    spriteID: bc5e29fe48cda42169248116197f8da4
+    spriteID: 24d79f606b02c49e59e75dafa711064c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -186,7 +186,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 38, y: 4}
-  - name: Layer4
+  - name: Roof
     originalName: 
     pivot: {x: 0.5, y: 0.6956522}
     alignment: 9
@@ -198,7 +198,7 @@ ScriptedImporter:
       y: 53
       width: 16
       height: 23
-    spriteID: 68cbc6d66cc004b9a89e468969dfbdbe
+    spriteID: 6061875067db44abb83186da6dd24671
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -211,17 +211,17 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 113350450
+      value0: 1776650466
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer1
+    name: Wheels
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Layer1
+    - name: Wheels
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -229,22 +229,22 @@ ScriptedImporter:
         y: 6
         width: 22
         height: 48
-      spriteId: 2c38b939699c64366a597b7c677c747e
+      spriteId: 819ba452b327549579183e199be20f98
     linkedCells: []
     parentIndex: -1
   - layerIndex: 1
     uuid:
-      value0: 516634977
+      value0: 1823884634
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer2
+    name: Chassis
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Layer2
+    - name: Chassis
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -252,22 +252,22 @@ ScriptedImporter:
         y: 3
         width: 26
         height: 57
-      spriteId: 792002b367d6e4368a9c1df3d38d8bf2
+      spriteId: 7185c6cca9f524338a134ce73a2cfd2e
     linkedCells: []
     parentIndex: -1
   - layerIndex: 2
     uuid:
-      value0: 3245518332
+      value0: 123983067
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer3
+    name: Windows
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Layer3
+    - name: Windows
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -275,22 +275,22 @@ ScriptedImporter:
         y: 8
         width: 20
         height: 41
-      spriteId: bc5e29fe48cda42169248116197f8da4
+      spriteId: 24d79f606b02c49e59e75dafa711064c
     linkedCells: []
     parentIndex: -1
   - layerIndex: 3
     uuid:
-      value0: 3648802859
+      value0: 1010962004
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer4
+    name: Roof
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Layer4
+    - name: Roof
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -298,7 +298,7 @@ ScriptedImporter:
         y: 16
         width: 16
         height: 23
-      spriteId: 68cbc6d66cc004b9a89e468969dfbdbe
+      spriteId: 6061875067db44abb83186da6dd24671
     linkedCells: []
     parentIndex: -1
   platformSettings:
