@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class SpriteStack : MonoBehaviour
 {
-    [SerializeField] private Transform[] transforms;
+    [SerializeField] private GameObject[] layers;
     [SerializeField] private float vMult;
     [SerializeField] private float hMult;
 
-    private float[] _initialZs;
     private int _layerCount;
-    
+    private Vector2[] _individualMults;
+    private Transform[] _transforms;
+
     void Awake()
     {
-        _layerCount = transforms.Length;
-        _initialZs = new float[_layerCount];
+        _layerCount = layers.Length;
+        _transforms = new Transform[_layerCount];
+        _individualMults = new Vector2[_layerCount];
+
         for (int i = 0; i < _layerCount; i++)
         {
-            _initialZs[i] = transforms[i].position.z;
+            _transforms[i] = layers[i].transform;
+            _individualMults[i] = layers[i].GetComponent<SpriteStackingProperties>().multipliers;
         }
     }
 
@@ -24,14 +28,13 @@ public class SpriteStack : MonoBehaviour
         Vector2 position = transform.position;
         for (int i = 0; i < _layerCount; i++)
         {
-            ComputeParallax(transforms[i], _initialZs[i], position);
+            ComputeParallax(_transforms[i], position, _individualMults[i]);
         }
     }
 
-    void ComputeParallax(Transform layerTransform, float zCoord, Vector2 currentPos)
+    void ComputeParallax(Transform layerTransform, Vector2 currentPos, Vector2 mults)
     {
         layerTransform.localPosition =
-            new Vector3(currentPos.x * hMult * zCoord * 0.1f, currentPos.y * vMult * zCoord * 0.1f, zCoord);
+            new Vector2(currentPos.x * hMult * 0.1f, currentPos.y * vMult * 0.1f) * mults;
     }
-
 }
