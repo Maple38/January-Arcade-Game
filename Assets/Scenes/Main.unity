@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 736215690}
   - component: {fileID: 736215691}
   m_Layer: 6
-  m_Name: Roof
+  m_Name: Layer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -945,7 +945,7 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 4
-  m_Sprite: {fileID: 3910969129041457507, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
+  m_Sprite: {fileID: -2917388423613996918, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 1370968081}
   - component: {fileID: 1370968082}
   m_Layer: 6
-  m_Name: Windows
+  m_Name: Layer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,7 +1094,7 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 3
-  m_Sprite: {fileID: -287650578469132282, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
+  m_Sprite: {fileID: -5270803801076081947, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 1441803140}
   - component: {fileID: 1441803141}
   m_Layer: 6
-  m_Name: Chassis
+  m_Name: Layer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1181,7 +1181,7 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: -187198602522830030, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
+  m_Sprite: {fileID: -7794715539483606306, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1203,7 +1203,7 @@ GameObject:
   - component: {fileID: 1518801797}
   - component: {fileID: 1518801798}
   m_Layer: 6
-  m_Name: Wheels
+  m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,7 +1268,7 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 103349460691974583, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
+  m_Sprite: {fileID: 1983569891872272355, guid: 36959f642b9d046659e499c4bc17e465, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
