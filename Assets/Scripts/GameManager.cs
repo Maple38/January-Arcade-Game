@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void AddScore(int amount)
+    public void AddScore(int amount)
     {
         Score += scoreMult * amount;
     }
