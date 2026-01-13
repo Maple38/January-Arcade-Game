@@ -316,8 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulseSpeed: 10
-  impulseAxisMults: {x: 1, y: 1.5}
+  impulseAxisMults: {x: 1, y: 1}
   speedMult: 1
+  testAngle: 0
 --- !u!61 &468348242
 BoxCollider2D:
   m_ObjectHideFlags: 0

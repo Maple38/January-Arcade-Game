@@ -31,21 +31,21 @@ public class PlayerControls : MonoBehaviour
     {
         if (_upKey.WasPressedThisFrame())
         {
-            _playerMovement.Impulse(270);
+            _playerMovement.Impulse(0);
         }
         else if (_downKey.WasPressedThisFrame())
         {
-            _playerMovement.Impulse(90);
+            _playerMovement.Impulse(180);
         }
 
         
         if (_leftKey.WasPressedThisFrame())
         {
-            _playerMovement.Impulse(180);
+            _playerMovement.Impulse(90);
         }
         else if (_rightKey.WasPressedThisFrame())
         {
-            _playerMovement.Impulse(0);
+            _playerMovement.Impulse(270);
         }
 
 

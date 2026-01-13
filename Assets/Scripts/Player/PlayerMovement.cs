@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -36,9 +37,9 @@ public class PlayerMovement : MonoBehaviour
     public void Impulse(float impulseAngle)
     {
         var force = new Vector2(
-            Mathf.Cos(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z))
+            Mathf.Cos(Mathf.Deg2Rad * (impulseAngle - transform.eulerAngles.z))
             * impulseSpeed * speedMult * impulseAxisMults.x,
-            Mathf.Sin(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z))
+            Mathf.Sin(Mathf.Deg2Rad * (impulseAngle - transform.eulerAngles.z))
             * impulseSpeed * speedMult * impulseAxisMults.y);
 
         _rb.AddForce(force,
