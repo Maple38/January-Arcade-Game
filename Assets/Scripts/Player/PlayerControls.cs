@@ -1,70 +1,60 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    private InputAction _backAction;
-    private InputAction _forwardAction;
-
-    private InputAction _hardLeftAction;
-    private InputAction _hardRightAction;
-    private InputAction _modAction;
     private PlayerAttack _playerAttack;
     private PlayerMovement _playerMovement;
-    private InputAction _softLeftAction;
-    private InputAction _softRightAction;
+    
+    private InputAction _modKey;
+    private InputAction _attackKey;
+    private InputAction _upKey;
+    private InputAction _downKey;
+    private InputAction _leftKey;
+    private InputAction _rightKey;
 
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttack = GetComponent<PlayerAttack>();
 
-        _hardLeftAction = InputSystem.actions.FindAction("HardLeft");
-        _softLeftAction = InputSystem.actions.FindAction("SoftLeft");
-        _hardRightAction = InputSystem.actions.FindAction("HardRight");
-        _softRightAction = InputSystem.actions.FindAction("SoftRight");
-        _forwardAction = InputSystem.actions.FindAction("Forward");
-        _backAction = InputSystem.actions.FindAction("Back");
-        _modAction = InputSystem.actions.FindAction("ModAction");
+        _upKey = InputSystem.actions.FindAction("Up");
+        _downKey = InputSystem.actions.FindAction("Down");
+        _leftKey = InputSystem.actions.FindAction("Left");
+        _rightKey = InputSystem.actions.FindAction("Right");
+        _modKey = InputSystem.actions.FindAction("Modifier");
+        _attackKey = InputSystem.actions.FindAction("Attack");
     }
 
     private void Update()
     {
-        // Q and E by default
-        if (_hardLeftAction.WasPressedThisFrame())
-        {
-            _playerMovement.Impulse(90);
-        }
-        else if (_hardRightAction.WasPressedThisFrame())
+        if (_upKey.WasPressedThisFrame())
         {
             _playerMovement.Impulse(-90);
         }
-
-        // A and D by default
-        if (_softLeftAction.IsPressed())
+        else if (_downKey.WasPressedThisFrame())
         {
-            _playerMovement.AngleAdd(1);
-        }
-        else if (_softRightAction.IsPressed())
-        {
-            _playerMovement.AngleAdd(-1);
-        }
-        else
-        {
-            _playerMovement.AngleSet(0);
+            _playerMovement.Impulse(90);
         }
 
-        // W
-        if (_forwardAction.WasPressedThisFrame())
+        
+        if (_leftKey.WasPressedThisFrame())
+        {
+            _playerMovement.Impulse(180);
+        }
+        else if (_rightKey.WasPressedThisFrame())
         {
             _playerMovement.Impulse(0);
         }
 
-        if (_backAction.IsPressed())
+
+        
+        if (_attackKey.IsPressed())
         {
             _playerAttack.ChargeRam();
         }
-        else if (_backAction.WasReleasedThisFrame())
+        else if (_attackKey.WasReleasedThisFrame())
         {
             _playerAttack.TriggerRam();
         }

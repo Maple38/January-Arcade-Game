@@ -532,7 +532,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ModAction",
+                    "name": "Modifier",
                     "type": "Button",
                     "id": "779eeeb9-cc2b-48c9-84c2-7f23dcaa905e",
                     "expectedControlType": "",
@@ -596,7 +596,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ModAction",
+                    "action": "Modifier",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
