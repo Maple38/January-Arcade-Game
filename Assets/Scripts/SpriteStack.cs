@@ -4,8 +4,8 @@ public class SpriteStack : MonoBehaviour
 {
     [SerializeField] private GameObject[] layers;
     [SerializeField] private float[] multipliers;
-    [SerializeField] private float vMult;
-    [SerializeField] private float hMult;
+    private const float VMult = 0.175f;
+    private const float HMult = 0.1f;
 
     private int _layerCount;
     private float[] _individualMults;
@@ -41,6 +41,6 @@ public class SpriteStack : MonoBehaviour
     void ComputeParallax(Transform layerTransform, Vector2 currentPos, float mult)
     {
         layerTransform.localPosition =
-            new Vector2(currentPos.x * hMult * 0.1f, currentPos.y * vMult * 0.1f) * mult;
+            new Vector2(currentPos.x * HMult * 0.1f, currentPos.y * VMult * 0.1f) * mult;
     }
 }
