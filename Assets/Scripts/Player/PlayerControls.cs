@@ -31,7 +31,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (_upKey.WasPressedThisFrame())
         {
-            _playerMovement.Impulse(-90);
+            _playerMovement.Impulse(270);
         }
         else if (_downKey.WasPressedThisFrame())
         {

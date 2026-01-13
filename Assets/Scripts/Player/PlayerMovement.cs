@@ -5,11 +5,7 @@ using UnityEngine.Serialization;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float impulseSpeed;
-    [FormerlySerializedAs("turnStep")]
-    [SerializeField] private float angleIncrement;
-    [SerializeField] private float forwardImpulseMult;
-    [SerializeField] private int maxAngleIndex;
-    [SerializeField] private float driftBackSpeed;
+    [SerializeField] private Vector2 impulseAxisMults;
     [DoNotSerialize] public float speedMult = 1;
     private float _angleIndex;
     private float _angleMult;
@@ -22,50 +18,28 @@ public class PlayerMovement : MonoBehaviour
         _bounds = GetComponent<BoundaryScript>().bounds;
     }
 
-    private void Update()
-    {
-        _angleIndex = Mathf.Clamp(_angleIndex, -maxAngleIndex, maxAngleIndex);
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, _angleIndex * angleIncrement);
+    // private void Update()
+    // {
+    //     // DriftBack();
+    // }
 
-        DriftBack();
-    }
-
-    private void DriftBack()
-    {
-        if (Mathf.Abs(_rb.linearVelocityY) < 0.01 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
-        {
-            transform.position = new Vector3(transform.position.x,
-                transform.position.y - driftBackSpeed * Time.deltaTime,
-                transform.position.z);
-        }
-    }
-
-    public void AngleAdd(int indexIncrement)
-    {
-        _angleIndex = Mathf.Round(_angleIndex + indexIncrement);
-    }
-
-    public void AngleSet(int index)
-    {
-        _angleIndex = index;
-    }
+    // private void DriftBack()
+    // {
+    //     if (Mathf.Abs(_rb.linearVelocityY) < 0.01 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
+    //     {
+    //         transform.position = new Vector3(transform.position.x,
+    //             transform.position.y - driftBackSpeed * Time.deltaTime,
+    //             transform.position.z);
+    //     }
+    // }
 
     public void Impulse(float impulseAngle)
     {
-        float internalImpulseSpeed;
-
-        if (impulseAngle == 0)
-        {
-            internalImpulseSpeed = impulseSpeed * forwardImpulseMult * speedMult;
-        }
-        else
-        {
-            internalImpulseSpeed = impulseSpeed * speedMult;
-        }
-
         var force = new Vector2(
-            -Mathf.Sin(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z)) * internalImpulseSpeed,
-            Mathf.Cos(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z)) * internalImpulseSpeed);
+            Mathf.Cos(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z))
+            * impulseSpeed * speedMult * impulseAxisMults.x,
+            Mathf.Sin(Mathf.Deg2Rad * (impulseAngle + transform.eulerAngles.z))
+            * impulseSpeed * speedMult * impulseAxisMults.y);
 
         _rb.AddForce(force,
             ForceMode2D.Impulse);

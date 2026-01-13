@@ -316,10 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulseSpeed: 10
-  angleIncrement: 35
-  forwardImpulseMult: 1.5
-  maxAngleIndex: 1
-  driftBackSpeed: 1
+  impulseAxisMults: {x: 1, y: 1.5}
   speedMult: 1
 --- !u!61 &468348242
 BoxCollider2D:
@@ -407,8 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds:
-    m_Center: {x: 0, y: -2.2, z: 0}
-    m_Extent: {x: 8.5, y: 2.7, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 8.23, y: 4.93, z: 0}
   boundaryEnabled: 1
 --- !u!114 &468348248
 MonoBehaviour:
@@ -962,11 +959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.91
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.86
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
       propertyPath: m_LocalPosition.z
