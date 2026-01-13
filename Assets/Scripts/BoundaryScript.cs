@@ -5,7 +5,7 @@ public class BoundaryScript : MonoBehaviour
     public Bounds bounds;
     public bool boundaryEnabled = true;
 
-    private void Update()
+    private void LateUpdate()
     {
         if (boundaryEnabled)
         {
