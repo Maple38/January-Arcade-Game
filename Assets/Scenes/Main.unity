@@ -432,12 +432,12 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: -3311420843900172961, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
+  m_Sprite: {fileID: 6985768929348236612, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.6666667, y: 9.333333}
+  m_Size: {x: 1.9375, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -519,12 +519,12 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 4
-  m_Sprite: {fileID: -8726181048247421046, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
+  m_Sprite: {fileID: -7782520527735014321, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.75, y: 9.333333}
+  m_Size: {x: 2.1875, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -908,12 +908,12 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 3
-  m_Sprite: {fileID: -7536835987748493786, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
+  m_Sprite: {fileID: 2656185082655155182, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.6666667, y: 9.916667}
+  m_Size: {x: 1.9375, y: 7.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1291,12 +1291,12 @@ SpriteRenderer:
   m_SortingLayerID: 171435861
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 5108928767706248061, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
+  m_Sprite: {fileID: -5494144064865102033, guid: 7bf94685fa09c4af38ade3f0f1e92b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 9.916667}
+  m_Size: {x: 1.9375, y: 7.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1539,11 +1539,11 @@ MonoBehaviour:
   - {fileID: 421161140}
   - {fileID: 361738488}
   multipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.3
+  - 0.4
+  - 0.3
+  - 0.5
+  - 0.65
 --- !u!1 &1370968080
 GameObject:
   m_ObjectHideFlags: 0
