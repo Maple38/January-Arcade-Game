@@ -10,13 +10,11 @@ public class PlayerMovement : MonoBehaviour
     [DoNotSerialize] public float speedMult = 1;
     private float _angleIndex;
     private float _angleMult;
-    private Bounds _bounds;
     private Rigidbody2D _rb;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _bounds = GetComponent<BoundaryScript>().bounds;
     }
 
     // private void Update()
