@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 16
+    spritePixelsToUnits: 24
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -74,7 +74,7 @@ ScriptedImporter:
   previousAsepriteImporterSettings:
     fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -87,7 +87,7 @@ ScriptedImporter:
   asepriteImporterSettings:
     fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639034356435810510
+  platformSettingsDirtyTick: 639038738357726410
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -122,21 +122,227 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  animatedSpriteImportData: []
+  animatedSpriteImportData:
+  - name: Layer1
+    originalName: 
+    pivot: {x: 0.5, y: 0.49572653}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 150
+      y: 4
+      width: 54
+      height: 234
+    spriteID: 522c0bbd345304bc0ba0cb313363e69f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 150, y: 4}
+  - name: Layer2
+    originalName: 
+    pivot: {x: 0.5, y: 0.49579835}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 236
+      width: 60
+      height: 238
+    spriteID: d14f58137f9804ffab3e5c3686128769
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 236}
+  - name: Layer3
+    originalName: 
+    pivot: {x: 0.5, y: 0.49579835}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 64
+      height: 238
+    spriteID: c7e3faa9bc46d4328a3326071ffae66f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Layer4
+    originalName: 
+    pivot: {x: 0.5, y: 0.52678573}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 4
+      width: 66
+      height: 224
+    spriteID: 954f1baa246c64625bbc01c634fcbc38
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 4}
+  - name: Layer5
+    originalName: 
+    pivot: {x: 0.5, y: 0.52678573}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 250
+      width: 64
+      height: 224
+    spriteID: 1f538bf3b62ef47a4a14cfb202bca456
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 250}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1346879259
+      value0: 113350450
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: croshair
-    layerFlags: 0
+    name: Layer1
+    layerFlags: 3
     layerType: 0
     blendMode: 0
-    cells: []
+    cells:
+    - name: Layer1
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 37
+        y: 12
+        width: 54
+        height: 234
+      spriteId: 522c0bbd345304bc0ba0cb313363e69f
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    uuid:
+      value0: 516634977
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 34
+        y: 10
+        width: 60
+        height: 238
+      spriteId: d14f58137f9804ffab3e5c3686128769
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
+    uuid:
+      value0: 3245518332
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer3
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 10
+        width: 64
+        height: 238
+      spriteId: c7e3faa9bc46d4328a3326071ffae66f
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 3
+    uuid:
+      value0: 3648802859
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer4
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 31
+        y: 10
+        width: 66
+        height: 224
+      spriteId: 954f1baa246c64625bbc01c634fcbc38
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 4
+    uuid:
+      value0: 2082718918
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer5
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer5
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 10
+        width: 64
+        height: 224
+      spriteId: 1f538bf3b62ef47a4a14cfb202bca456
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -180,4 +386,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 256}
-  previousTextureSize: {x: 0, y: 0}
+  previousTextureSize: {x: 256, y: 512}
