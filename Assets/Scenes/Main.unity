@@ -853,10 +853,9 @@ MonoBehaviour:
   renderGizmos: 1
   linearAccel: 0
   speedMax: 0
-  wheelAngleMax: 30
+  wheelAngleMax: 25
   wheelOffsetFront: 0.62
   wheelOffsetBack: -0.69
-  _wheelAngle: 15
 --- !u!1 &1999650467
 GameObject:
   m_ObjectHideFlags: 0

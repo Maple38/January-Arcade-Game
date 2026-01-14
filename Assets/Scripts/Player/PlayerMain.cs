@@ -50,7 +50,7 @@ public class PlayerMain : MonoBehaviour
         var enemy = other.gameObject;
         if (enemy.CompareTag("Enemy"))
         {
-            var enemyMain = enemy.GetComponent<Enemy>();
+            var enemyMain = enemy.GetComponent<EnemyMain>();
             if (_playerAttack.RamInProgress)
             {
                 enemyMain.Damage(_playerAttack.RamPowerCurrent);
