@@ -1,29 +1,38 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Vehicle : MonoBehaviour
 {
-    [SerializeField] private float _linearAccel;
-    [SerializeField] private float _speedMax;
-    [SerializeField] private float _wheelAngleMax;
-    [SerializeField] private float _wheelOffsetFront;
-    [SerializeField] private float _wheelOffsetBack;
+    [SerializeField] private bool renderGizmos;
+    [SerializeField] private float linearAccel;
+    [SerializeField] private float speedMax;
+    [SerializeField] private float wheelAngleMax;
+    [SerializeField] private float wheelOffsetFront;
+    [SerializeField] private float wheelOffsetBack;
     private Vector2 _targetPos;
     private Vector2 _desiredDir;
-    private float _wheelAngle;
-    private float _wheelSpacing;
-    private float _turnRadius;
+    [SerializeField] private float _wheelAngle;
+    private float _wheelBase;
+    private float _turnRadius; // Turn radius according to the rear wheel axle
     private float _turnRadiusMax;
 
     void Start()
     {
-        _turnRadiusMax = CalcTurnRadius(_wheelSpacing, _wheelAngleMax);
+        _turnRadiusMax = _wheelBase * Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad);
         _targetPos = new Vector2(0, 0);
-        _wheelSpacing = Mathf.Abs(_wheelOffsetFront) + Mathf.Abs(_wheelOffsetBack);
+        _wheelBase = Mathf.Abs(wheelOffsetFront) + Mathf.Abs(wheelOffsetBack);
     }
 
     void Update()
     {
-        _turnRadius = CalcTurnRadius(_wheelSpacing, _wheelAngle);
+        // Calculate the turning radius based on Ackerman's formula thingy
+        _turnRadius = _wheelBase * Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
+        
+        if (Mathf.Abs(_wheelAngle) > 0.1f)
+        {
+            RotateWithMovement();
+        }
+        
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -31,41 +40,43 @@ public class Vehicle : MonoBehaviour
         }
     }
 
-    float CalcTurnRadius(float wheelBase, float x)
+    void RotateWithMovement()
     {
-        var xRad = x * Mathf.Deg2Rad;
-        var sinx = Mathf.Sin(xRad); 
-        var scale = wheelBase / sinx;
-        var cosDistance = Mathf.Cos(xRad) * scale;
-        return cosDistance;
+        // TODO
+        // ∆rotation = ∆x/r
     }
 
     void OnDrawGizmosSelected()
     {
-        _wheelSpacing = Mathf.Abs(_wheelOffsetFront) + Mathf.Abs(_wheelOffsetBack);
-        _turnRadiusMax = CalcTurnRadius(_wheelSpacing, _wheelAngleMax);
-        _turnRadius = CalcTurnRadius(_wheelSpacing, _wheelAngle);
-        
-        Vector2 wheelPosFront = transform.position + transform.up * _wheelOffsetFront;
-        Vector2 wheelPosBack = transform.position + transform.up * _wheelOffsetBack;
-        Vector2 centerOfTurn = wheelPosFront + transform.right;
-        Vector2 centerOfTurnMax = wheelPosBack + ((Vector2)transform.right * _turnRadiusMax);
+        if (renderGizmos)
+        {
+            _wheelBase = Mathf.Abs(wheelOffsetFront) + Mathf.Abs(wheelOffsetBack);
+            var rFrontMax = _wheelBase / Mathf.Sin(wheelAngleMax * Mathf.Deg2Rad);
+            var rFront = _wheelBase / Mathf.Sin(_wheelAngle * Mathf.Deg2Rad);
+            var rBackMax = _wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad);
+            var rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
 
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(_targetPos, 0.1f);
+            Vector2 axleFront = transform.position + transform.up * wheelOffsetFront;
+            Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
 
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(wheelPosFront, wheelPosBack);
+            Vector2 turnPointMax = axleBack + (Vector2)transform.right * rBackMax;
+            Vector2 turnPoint = axleBack + (Vector2)transform.right * rBack;
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(wheelPosFront, centerOfTurn);
-        Gizmos.DrawLine(wheelPosBack, centerOfTurn);
-        Gizmos.DrawWireSphere(centerOfTurn, _turnRadius);
-        
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(wheelPosFront, centerOfTurnMax);
-        Gizmos.DrawLine(wheelPosBack, centerOfTurnMax);
-        Gizmos.DrawWireSphere(centerOfTurnMax, _turnRadiusMax);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(_targetPos, 0.1f);
+            Gizmos.DrawLine(axleFront, axleBack);
 
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(axleFront, turnPointMax);
+            Gizmos.DrawLine(axleBack, turnPointMax);
+            Gizmos.DrawWireSphere(turnPointMax, rFrontMax);
+            Gizmos.DrawWireSphere(turnPointMax, rBackMax);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(axleFront, turnPoint);
+            Gizmos.DrawLine(axleBack, turnPoint);
+            Gizmos.DrawWireSphere(turnPoint, rFront);
+            Gizmos.DrawWireSphere(turnPoint, rBack);
+        }
     }
 }

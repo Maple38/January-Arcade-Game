@@ -723,6 +723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1338519196}
+  - component: {fileID: 1338519197}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -747,6 +748,19 @@ Transform:
   - {fileID: 1278828355}
   m_Father: {fileID: 1999650468}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1338519197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338519195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e77e31371d84d5ca6991a28788c96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TargetPos>k__BackingField: {x: 0, y: 0}
 --- !u!1001 &1789505637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -773,11 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7827501558866086808, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.69
+      value: 4.16
       objectReference: {fileID: 0}
     - target: {fileID: 7827501558866086808, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 7827501558866086808, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -817,14 +831,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6873681565396144741, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1789505639}
+      addedObject: {fileID: 1789505641}
   m_SourcePrefab: {fileID: 100100000, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
 --- !u!1 &1789505638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6873681565396144741, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
   m_PrefabInstance: {fileID: 1789505637}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1789505639
+--- !u!114 &1789505641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -833,12 +847,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789505638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c767c4e36911842abacf30c368ea43ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7688477ba9b964061877c166be40ec6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationIncrement: 10
-  target: {x: -1.71, y: 0}
-  speed: 1
+  renderGizmos: 1
+  linearAccel: 0
+  speedMax: 0
+  wheelAngleMax: 30
+  wheelOffsetFront: 0.62
+  wheelOffsetBack: -0.69
+  _wheelAngle: 15
 --- !u!1 &1999650467
 GameObject:
   m_ObjectHideFlags: 0
