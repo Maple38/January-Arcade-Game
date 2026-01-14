@@ -25,11 +25,11 @@ public class VehicleController : MonoBehaviour
         _rBack = _wheelBase * Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
         
         CalculateMovement();
-        if (Mathf.Abs(_wheelAngle) > 0.1f)
-        {
-            RotateWithMovement();
-        }
-        transform.Translate(_velCurrent * Time.deltaTime);
+        // if (Mathf.Abs(_wheelAngle) > 0.1f)
+        // {
+        //     RotateWithMovement();
+        // }
+        transform.Translate(_velCurrent * Time.deltaTime, Space.World);
     }
 
     private void CalculateMovement()
@@ -82,12 +82,15 @@ public class VehicleController : MonoBehaviour
             Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
             Vector2 turnPointMax = axleBack + side * _rBackMax;
             Vector2 turnPoint = axleBack + side * _rBack;
-
+            Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent; 
+            Vector2 velDesiredPos = (Vector2)transform.position + _velDesired; 
+            
+            
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, _velCurrent);
-            Gizmos.DrawLine(transform.position, _velDesired);
+            Gizmos.DrawLine(transform.position, velCurrentPos);
+            Gizmos.DrawLine(transform.position, velDesiredPos);
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(_velCurrent, _velDesired);
+            Gizmos.DrawLine(velCurrentPos, velDesiredPos);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(axleFront, axleBack);

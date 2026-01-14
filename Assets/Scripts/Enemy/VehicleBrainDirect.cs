@@ -4,14 +4,13 @@ using UnityEngine.Serialization;
 
 public class VehicleBrainDirect : MonoBehaviour
 {
-    private Vector2 _targetPos;
+    private Vector2 _targetPos = new (-5, 0);
     private VehicleController _controller;
     [SerializeField] private float throttleOverTen;
     
     void Start()
     {
         _controller = GetComponent<VehicleController>();
-        _targetPos = new Vector2(0, 0);
     }
     
     void Update()
