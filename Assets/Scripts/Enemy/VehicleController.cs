@@ -5,6 +5,7 @@ public class VehicleController : MonoBehaviour
 {
     [SerializeField] private bool renderGizmos;
     [SerializeField] private float accelerationMax;
+    [SerializeField] private float speedMax;
     [SerializeField] private float wheelAngleMax;
     [SerializeField] private float wheelOffsetFront;
     [SerializeField] private float wheelOffsetBack;
@@ -34,6 +35,7 @@ public class VehicleController : MonoBehaviour
     private void CalculateMovement()
     {
         _velDesired += _acceleration * ((Vector2)transform.up / Mathf.Cos(Mathf.Deg2Rad * _wheelAngle));
+        _velDesired = Vector2.ClampMagnitude(_velDesired, speedMax);
         _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, velocityMaxDelta);
     }
 
