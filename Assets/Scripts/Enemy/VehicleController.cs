@@ -52,8 +52,8 @@ public class VehicleController : MonoBehaviour
         if (!Mathf.Approximately(_wheelAngle, 0)) // Don't want to divide by zero
         {
             // Rotation of a moving vehicle = distance delta / turning radius
-            // Note: It seems this needs to be converted to degrees 
-            rotationAmount = Mathf.Deg2Rad * _velCurrent.magnitude / _rBack;
+            // Note: It seems this needs to be converted from radians to degrees 
+            rotationAmount = Mathf.Rad2Deg * _velCurrent.magnitude / _rBack;
         }
         transform.Rotate(transform.forward, Time.deltaTime * _turnSide * rotationAmount);
     }
