@@ -27,7 +27,7 @@ public class VehicleController : MonoBehaviour
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
         
         // Skip complex physics calculations if they aren't needed
-        if (_velCurrent.magnitude >= 0.1f | _acceleration > 0f)
+        if (_velCurrent.magnitude >= 0.1f || _acceleration > 0f)
         {
             CalculatePhysics();
         }
