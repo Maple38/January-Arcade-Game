@@ -35,16 +35,16 @@ public class VehicleController : MonoBehaviour
     
     private void CalculatePhysics()
     {
-        // Calculate the total rotation in radians
-        var rotRad = (_wheelAngle + transform.localEulerAngles.z + 90) * Mathf.Deg2Rad;
-        // Create a vector to represent the steering direction
-        _steeringVector = new Vector2(Mathf.Cos(rotRad), Mathf.Sin(rotRad));
+        // Create a quaternion to represent the angle of the wheels
+        var angleQuaternion = Quaternion.Euler(0, 0, _wheelAngle);
+        // Multiply the "up" vector by our wheel angle quaternion to make it point in the proper direction
+        _steeringVector = angleQuaternion * transform.up;
         // Apply acceleration in the desired direction
         _velDesired += Time.deltaTime * _acceleration * _steeringVector;
         // Clamp the vector's magnitude to the maximum speed
         _velDesired = Vector2.ClampMagnitude(_velDesired, speedMax);
         // The limit in change of velocity, this determines whether the car drifts or not
-        _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, Time.deltaTime *  velocityMaxDelta);
+        _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, Time.deltaTime * velocityMaxDelta);
         // Move according to the calculated current velocity, multiplied by time
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
 
