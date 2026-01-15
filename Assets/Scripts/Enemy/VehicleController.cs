@@ -24,7 +24,7 @@ public class VehicleController : MonoBehaviour
     void Update()
     {
         // Calculate the turning radius based on Ackerman's formula thingy
-        _rBack = _wheelBase * Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
+        _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
         
         // Skip complex physics calculations if they aren't needed
         if (_velCurrent.magnitude >= 0.1f | _acceleration > 0f)
@@ -40,11 +40,11 @@ public class VehicleController : MonoBehaviour
         // Create a vector to represent the steering direction
         _steeringVector = new Vector2(Mathf.Cos(rotRad), Mathf.Sin(rotRad));
         // Apply acceleration in the desired direction
-        _velDesired += _acceleration * _steeringVector;
+        _velDesired += Time.deltaTime * _acceleration * _steeringVector;
         // Clamp the vector's magnitude to the maximum speed
         _velDesired = Vector2.ClampMagnitude(_velDesired, speedMax);
         // The limit in change of velocity, this determines whether the car drifts or not
-        _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, velocityMaxDelta);
+        _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, Time.deltaTime *  velocityMaxDelta);
         // Move according to the calculated current velocity, multiplied by time
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
 
@@ -55,7 +55,7 @@ public class VehicleController : MonoBehaviour
             // Note: It seems this needs to be converted to degrees 
             rotationAmount = Mathf.Deg2Rad * _velCurrent.magnitude / _rBack;
         }
-        transform.Rotate(transform.up, Time.deltaTime * _turnSide * rotationAmount);
+        transform.Rotate(transform.forward, Time.deltaTime * _turnSide * rotationAmount);
     }
 
     public void Steer(float euler)
