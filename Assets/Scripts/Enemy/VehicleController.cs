@@ -19,6 +19,7 @@ public class VehicleController : MonoBehaviour
     private float _wheelBase;
     private float _rBack; // Turn radius according to the rear wheel axle
     private float _rBackMax; // Turn radius with wheels maximally angled
+    private float _turnSide;
 
     void Update()
     {
@@ -46,15 +47,21 @@ public class VehicleController : MonoBehaviour
         _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, velocityMaxDelta);
         // Move according to the calculated current velocity, multiplied by time
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
-        
-        // Rotation of a moving vehicle = distance delta / turning radius
-        var rotationAmount = _velCurrent.magnitude / _rBack * Time.deltaTime;
-        transform.Rotate(transform.up, rotationAmount);
+
+        float rotationAmount = 0f;
+        if (!Mathf.Approximately(_wheelAngle, 0)) // Don't want to divide by zero
+        {
+            // Rotation of a moving vehicle = distance delta / turning radius
+            // Note: It seems this needs to be converted to degrees 
+            rotationAmount = Mathf.Deg2Rad * _velCurrent.magnitude / _rBack;
+        }
+        transform.Rotate(transform.up, Time.deltaTime * _turnSide * rotationAmount);
     }
 
     public void Steer(float euler)
     {
         _wheelAngle = Mathf.Clamp(euler, -wheelAngleMax, wheelAngleMax);
+        _turnSide = Mathf.Sign(_wheelAngle);
     }
 
     public void Throttle(float value)
@@ -99,7 +106,7 @@ public class VehicleController : MonoBehaviour
             Gizmos.DrawLine(velCurrentPos, velDesiredPos);
 
             Gizmos.color = Color.white;
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector * 3);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(axleFront, axleBack);

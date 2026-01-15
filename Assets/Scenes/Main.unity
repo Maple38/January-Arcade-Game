@@ -840,12 +840,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderGizmos: 1
-  accelerationMax: 0.2
-  speedMax: 2
+  accelerationMax: 1
+  speedMax: 4
   wheelAngleMax: 25
   wheelOffsetFront: 0.62
   wheelOffsetBack: -0.69
-  velocityMaxDelta: 10
+  velocityMaxDelta: 50
 --- !u!114 &1789505642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d87a6b5f0f9407aa771e76b8559104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throttleOverTen: 0
+  throttleOverTen: 1
 --- !u!1 &1999650467
 GameObject:
   m_ObjectHideFlags: 0
