@@ -13,6 +13,7 @@ public class VehicleController : MonoBehaviour
     private Vector2 _velDesired;
     private Vector2 _velCurrent;
     private float _acceleration;
+    private Vector2 _steeringVector;
     
     private float _wheelAngle;
     private float _wheelBase;
@@ -24,19 +25,31 @@ public class VehicleController : MonoBehaviour
         // Calculate the turning radius based on Ackerman's formula thingy
         _rBack = _wheelBase * Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
         
-        CalculateMovement();
-        // if (Mathf.Abs(_wheelAngle) > 0.1f)
-        // {
-        //     RotateWithMovement();
-        // }
-        transform.Translate(_velCurrent * Time.deltaTime, Space.World);
+        // Skip complex physics calculations if they aren't needed
+        if (_velCurrent.magnitude >= 0.1f | _acceleration > 0f)
+        {
+            CalculatePhysics();
+        }
     }
-
-    private void CalculateMovement()
+    
+    private void CalculatePhysics()
     {
-        _velDesired += _acceleration * ((Vector2)transform.up / Mathf.Cos(Mathf.Deg2Rad * _wheelAngle));
+        // Calculate the total rotation in radians
+        var rotRad = (_wheelAngle + transform.localEulerAngles.z + 90) * Mathf.Deg2Rad;
+        // Create a vector to represent the steering direction
+        _steeringVector = new Vector2(Mathf.Cos(rotRad), Mathf.Sin(rotRad));
+        // Apply acceleration in the desired direction
+        _velDesired += _acceleration * _steeringVector;
+        // Clamp the vector's magnitude to the maximum speed
         _velDesired = Vector2.ClampMagnitude(_velDesired, speedMax);
+        // The limit in change of velocity, this determines whether the car drifts or not
         _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, velocityMaxDelta);
+        // Move according to the calculated current velocity, multiplied by time
+        transform.position += (Vector3)(_velCurrent * Time.deltaTime);
+        
+        // Rotation of a moving vehicle = distance delta / turning radius
+        var rotationAmount = _velCurrent.magnitude / _rBack * Time.deltaTime;
+        transform.Rotate(transform.up, rotationAmount);
     }
 
     public void Steer(float euler)
@@ -47,12 +60,6 @@ public class VehicleController : MonoBehaviour
     public void Throttle(float value)
     {
         _acceleration = Mathf.Clamp01(value) * accelerationMax;
-    }
-
-    void RotateWithMovement()
-    {
-        var rotationAmount = Time.deltaTime * _velCurrent.magnitude / _rBack;
-        transform.Rotate(transform.up, rotationAmount);
     }
 
     void OnValidate()
@@ -83,14 +90,16 @@ public class VehicleController : MonoBehaviour
             Vector2 turnPointMax = axleBack + side * _rBackMax;
             Vector2 turnPoint = axleBack + side * _rBack;
             Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent; 
-            Vector2 velDesiredPos = (Vector2)transform.position + _velDesired; 
-            
+            Vector2 velDesiredPos = (Vector2)transform.position + _velDesired;
             
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, velCurrentPos);
             Gizmos.DrawLine(transform.position, velDesiredPos);
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(velCurrentPos, velDesiredPos);
+
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector);
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(axleFront, axleBack);
