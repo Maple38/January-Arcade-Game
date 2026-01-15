@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class VehicleController : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class VehicleController : MonoBehaviour
     private Vector2 _velCurrent;
     private float _acceleration;
     private Vector2 _steeringVector;
-    
+
     private float _wheelAngle;
     private float _wheelBase;
     private float _rBack; // Turn radius according to the rear wheel axle
@@ -25,20 +24,18 @@ public class VehicleController : MonoBehaviour
     {
         // Calculate the turning radius based on Ackerman's formula thingy
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
-        
+
         // Skip complex physics calculations if they aren't needed
         if (_velCurrent.magnitude >= 0.1f || _acceleration > 0f)
         {
             CalculatePhysics();
         }
     }
-    
+
     private void CalculatePhysics()
     {
-        // Create a quaternion to represent the angle of the wheels
-        var angleQuaternion = Quaternion.Euler(0, 0, _wheelAngle);
-        // Multiply the "up" vector by our wheel angle quaternion to make it point in the proper direction
-        _steeringVector = angleQuaternion * transform.up;
+        // Multiply the up vector by a quaternion representing the wheel angle, to rotate it in that direction
+        _steeringVector = Quaternion.Euler(0, 0, _wheelAngle) * transform.up;
         // Apply acceleration in the desired direction
         _velDesired += Time.deltaTime * _acceleration * _steeringVector;
         // Clamp the vector's magnitude to the maximum speed
@@ -48,14 +45,14 @@ public class VehicleController : MonoBehaviour
         // Move according to the calculated current velocity, multiplied by time
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
 
-        float rotationAmount = 0f;
-        if (!Mathf.Approximately(_wheelAngle, 0)) // Don't want to divide by zero
+        // Don't want to divide by zero, and we can skip this calculation anyway if the wheels are straight
+        if (!Mathf.Approximately(_wheelAngle, 0)) 
         {
             // Rotation of a moving vehicle = distance delta / turning radius
-            // Note: It seems this needs to be converted from radians to degrees 
-            rotationAmount = Mathf.Rad2Deg * _velCurrent.magnitude / _rBack;
+            // Note: Rotation is calculated in radians, needs to be converted to degrees
+            transform.Rotate(transform.forward,
+                Time.deltaTime * _turnSide * (Mathf.Rad2Deg * _velCurrent.magnitude / _rBack));
         }
-        transform.Rotate(transform.forward, Time.deltaTime * _turnSide * rotationAmount);
     }
 
     public void Steer(float euler)
@@ -96,9 +93,9 @@ public class VehicleController : MonoBehaviour
             Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
             Vector2 turnPointMax = axleBack + side * _rBackMax;
             Vector2 turnPoint = axleBack + side * _rBack;
-            Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent; 
+            Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent;
             Vector2 velDesiredPos = (Vector2)transform.position + _velDesired;
-            
+
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, velCurrentPos);
             Gizmos.DrawLine(transform.position, velDesiredPos);

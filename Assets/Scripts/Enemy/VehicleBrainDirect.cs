@@ -7,17 +7,16 @@ public class VehicleBrainDirect : MonoBehaviour
     private Vector2 _targetPos = new (-50, -20);
     private VehicleController _controller;
     private Vector2 _targetDir;
-    [SerializeField] private float throttleOverTen;
     
     void Start()
     {
         _controller = GetComponent<VehicleController>();
+        _controller.Throttle(1);
     }
     
     void Update()
     {
         _controller.Steer(CalculateSteering());
-        _controller.Throttle(throttleOverTen/10);
         if (Input.GetMouseButtonDown(0))
         {
             _targetPos = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
