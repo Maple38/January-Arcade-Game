@@ -5,11 +5,9 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float impulseSpeed;
-    [SerializeField] private Vector2 impulseAxisMults;
-    [DoNotSerialize] public float speedMult = 1;
-    private float _angleIndex;
-    private float _angleMult;
+    [SerializeField] private float impulseSpeed; // The strength to "impulse" the player by when a key is pressed
+    [SerializeField] private Vector2 impulseAxisMults; // The X and Y multipliers for impulses
+    [DoNotSerialize] public float speedMult = 1; // Public variable, allows for other scripts to adjust the speed
     private Rigidbody2D _rb;
 
     private void Start()
@@ -17,29 +15,17 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // private void Update()
-    // {
-    //     // DriftBack();
-    // }
 
-    // private void DriftBack()
-    // {
-    //     if (Mathf.Abs(_rb.linearVelocityY) < 0.01 && transform.position.y > _bounds.min.y + driftBackSpeed * 0.25)
-    //     {
-    //         transform.position = new Vector3(transform.position.x,
-    //             transform.position.y - driftBackSpeed * Time.deltaTime,
-    //             transform.position.z);
-    //     }
-    // }
-
+    // Triggered by an external script that handles inputs
     public void Impulse(float impulseAngle)
     {
+        // Calculate force to apply to player...
         var force = new Vector2(
             Mathf.Cos(Mathf.Deg2Rad * (impulseAngle - transform.eulerAngles.z))
             * impulseSpeed * speedMult * impulseAxisMults.x,
             Mathf.Sin(Mathf.Deg2Rad * (impulseAngle - transform.eulerAngles.z))
             * impulseSpeed * speedMult * impulseAxisMults.y);
-
+        // ...and apply it
         _rb.AddForce(force,
             ForceMode2D.Impulse);
     }
