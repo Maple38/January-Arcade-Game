@@ -1,15 +1,15 @@
-using System;
 using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
 {
-    [SerializeField] private float damageCooldown;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int contactDamage;
-    [SerializeField] private float kbPowerDefault;
+    [SerializeField] private float damageCooldown; // Time the player is invulnerable for after taking damage
+    [SerializeField]
+    private int maxHealth; // This is the maximum health value. I dearly hope this doesn't need any further explaining.
+    [SerializeField] private int contactDamage; // The amount of damage enemies should take on collision
+    [SerializeField] private float kbPowerDefault; // The knockback to apply to enemies on collision
     private int _health;
-    private float _iFrames;
-    private float _kbPower;
+    private float _iFrames; // Not actually measured in frames, it's measured in time
+    private float _kbPower; // The knockback power actually used by knockback code. Might be modified by powerups.
     private PlayerAttack _playerAttack;
     private PlayerMovement _playerMovement;
 
@@ -51,28 +51,34 @@ public class PlayerMain : MonoBehaviour
         if (enemy.CompareTag("Enemy"))
         {
             var enemyMain = enemy.GetComponent<EnemyMain>();
+            // If the player is ramming, don't take damage
             if (_playerAttack.RamInProgress)
             {
                 enemyMain.Damage(_playerAttack.RamPowerCurrent);
-                Invincibility(0.1f);
+                Invincibility(0.1f); // Become invincible for 100ms to protect from any damage sources unaccounted for
                 // TODO vfx + sound
             }
+            // Otherwise, we both take damage
             else
             {
                 Damage(enemyMain.contactDamage);
                 enemyMain.Damage(contactDamage);
 
+                // Apply knockback with given power at the angle of collision
                 var collisionAngle = Vector2.Angle(transform.position, other.transform.position) * Mathf.Deg2Rad;
                 enemyMain.Knockback(new Vector2(Mathf.Cos(collisionAngle), Mathf.Sin(collisionAngle) * _kbPower));
             }
         }
     }
 
+    // Become invincible for a certain amount of time. This code makes sure it doesn't get shortened by mistake,
+    // and that it's an overwrite so we don't get scripts accidentally adding lots and lots of time to it
     private void Invincibility(float duration)
     {
         _iFrames = Mathf.Max(_iFrames, duration);
     }
 
+    // Public function to take damage, which can be called to damage the player. Yeah, it's a damage function.
     public void Damage(int amount)
     {
         Invincibility(damageCooldown);
@@ -83,7 +89,7 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
-    public void Death()
+    private void Death()
     {
         // TODO
     }
