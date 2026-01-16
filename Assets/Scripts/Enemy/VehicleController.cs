@@ -21,6 +21,7 @@ public class VehicleController : MonoBehaviour
     private float _wheelBase;
     private float _rBack; // Turn radius according to the rear wheel axle
     private float _rBackMax; // Turn radius with wheels maximally angled
+    private float _shockTime;
 
     void Update()
     {
@@ -56,6 +57,11 @@ public class VehicleController : MonoBehaviour
             transform.Rotate(transform.forward,
                 Time.deltaTime * (Mathf.Rad2Deg * _velCurrent.magnitude / _rBack));
         }
+    }
+
+    public void ApplyForce(Vector2 vector)
+    {
+        _velCurrent += vector;
     }
 
     public void Steer(float euler)

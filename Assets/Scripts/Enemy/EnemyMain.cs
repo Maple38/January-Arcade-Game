@@ -5,11 +5,14 @@ public class EnemyMain : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int points;
     public int contactDamage;
+    private VehicleController _vehicle;
     private int _health;
 
     private void Awake()
     {
         _health = maxHealth;
+        // If the enemy is a vehicle, grab a reference to the controller
+        TryGetComponent<VehicleController>(out _vehicle);
     }
 
     public void Damage(int amount)
@@ -41,5 +44,6 @@ public class EnemyMain : MonoBehaviour
 
     public void Knockback(Vector2 vector)
     {
+        _vehicle?.ApplyForce(vector);
     }
 }
