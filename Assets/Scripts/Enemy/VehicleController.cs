@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour
 {
-    [SerializeField] private bool renderGizmos;
+    [Header("Movement Settings")]
+    [Range(0f, 10f)] [SerializeField] private float traction;
     [SerializeField] private float accelerationMax;
     [SerializeField] private float speedMax;
     [SerializeField] private float wheelAngleMax;
+    
+    [Header("Other Configs")]
+    [SerializeField] private bool renderGizmos;
     [SerializeField] private float wheelOffsetFront;
     [SerializeField] private float wheelOffsetBack;
-    [SerializeField] private float velocityMaxDelta;
+    
     private Vector2 _velDesired;
     private Vector2 _velCurrent;
     private float _acceleration;
     private Vector2 _steeringVector;
-
     private float _wheelAngle;
     private float _wheelBase;
     private float _rBack; // Turn radius according to the rear wheel axle
@@ -36,12 +39,13 @@ public class VehicleController : MonoBehaviour
     {
         // Multiply the up vector by a quaternion representing the wheel angle, to rotate it in that direction
         _steeringVector = Quaternion.Euler(0, 0, _wheelAngle) * transform.up;
-        // Apply acceleration in the desired direction
-        _velDesired += Time.deltaTime * _acceleration * _steeringVector;
-        // Clamp the vector's magnitude to the maximum speed
-        _velDesired = Vector2.ClampMagnitude(_velDesired, speedMax);
-        // The limit in change of velocity, this determines whether the car drifts or not
-        _velCurrent = Vector2.MoveTowards(_velCurrent, _velDesired, Time.deltaTime * velocityMaxDelta);
+        // Calculate the ideal velocity vector
+        _velDesired = _velCurrent.magnitude * _steeringVector;
+        // Interpolate the current velocity towards the ideal/desired velocity, with respect to traction
+        _velCurrent = Vector2.Lerp(_velCurrent, _velDesired, traction * Time.deltaTime);
+        // Accelerate in the direction of steering and clamp magnitude
+        _velCurrent += _steeringVector * (_acceleration * Time.deltaTime);
+        _velCurrent = Vector2.ClampMagnitude(_velCurrent, speedMax);
         // Move according to the calculated current velocity, multiplied by time
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
 
