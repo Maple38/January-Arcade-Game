@@ -21,7 +21,6 @@ public class VehicleController : MonoBehaviour
     private float _wheelBase;
     private float _rBack; // Turn radius according to the rear wheel axle
     private float _rBackMax; // Turn radius with wheels maximally angled
-    private float _turnSide;
 
     void Update()
     {
@@ -55,14 +54,13 @@ public class VehicleController : MonoBehaviour
             // Rotation of a moving vehicle = distance delta / turning radius
             // Note: Rotation is calculated in radians, needs to be converted to degrees
             transform.Rotate(transform.forward,
-                Time.deltaTime * _turnSide * (Mathf.Rad2Deg * _velCurrent.magnitude / _rBack));
+                Time.deltaTime * (Mathf.Rad2Deg * _velCurrent.magnitude / _rBack));
         }
     }
 
     public void Steer(float euler)
     {
         _wheelAngle = Mathf.Clamp(euler, -wheelAngleMax, wheelAngleMax);
-        _turnSide = Mathf.Sign(_wheelAngle);
     }
 
     public void Throttle(float value)
@@ -73,7 +71,8 @@ public class VehicleController : MonoBehaviour
     void OnValidate()
     {
         _wheelBase = Mathf.Abs(wheelOffsetFront) + Mathf.Abs(wheelOffsetBack);
-        _rBackMax = _wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad);
+        // _rBackMax is UNSIGNED where as _rBack is SIGNED
+        _rBackMax = Mathf.Abs(_wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad));
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
     }
 
@@ -83,20 +82,14 @@ public class VehicleController : MonoBehaviour
         {
             var rFrontMax = _wheelBase / Mathf.Sin(wheelAngleMax * Mathf.Deg2Rad);
             var rFront = _wheelBase / Mathf.Sin(_wheelAngle * Mathf.Deg2Rad);
-            Vector2 side;
-            if (_wheelAngle < 0f)
-            {
-                side = transform.right * -1;
-            }
-            else
-            {
-                side = transform.right;
-            }
+            var turnSign = Mathf.Sign(_wheelAngle);
 
             Vector2 axleFront = transform.position + transform.up * wheelOffsetFront;
             Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
-            Vector2 turnPointMax = axleBack + side * _rBackMax;
-            Vector2 turnPoint = axleBack + side * _rBack;
+            
+            Vector2 turnPointMax = axleBack - (Vector2)transform.right * turnSign * _rBackMax;
+            Vector2 turnPoint = axleBack - (Vector2)transform.right * _rBack;
+            
             Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent;
             Vector2 velDesiredPos = (Vector2)transform.position + _velDesired;
 
@@ -111,17 +104,15 @@ public class VehicleController : MonoBehaviour
 
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(axleFront, axleBack);
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(axleFront, turnPointMax);
-            Gizmos.DrawLine(axleBack, turnPointMax);
-            Gizmos.DrawWireSphere(turnPointMax, rFrontMax);
-            Gizmos.DrawWireSphere(turnPointMax, _rBackMax);
+            
+            // Simplified turning radius gizmos
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(axleFront, turnPoint);
-            Gizmos.DrawLine(axleBack, turnPoint);
-            Gizmos.DrawWireSphere(turnPoint, rFront);
-            Gizmos.DrawWireSphere(turnPoint, _rBack);
+            Gizmos.DrawWireSphere(turnPointMax, _rBackMax);
+            Gizmos.DrawLine(axleBack,turnPointMax);
+            if (Mathf.Abs(_wheelAngle) > 0f)
+            {
+                Gizmos.DrawWireSphere(turnPoint, Mathf.Abs(_rBack));
+            }
         }
     }
 }
