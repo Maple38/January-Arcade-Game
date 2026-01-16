@@ -19,6 +19,7 @@ public class PlayerControls : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAttack = GetComponent<PlayerAttack>();
 
+        // Cache references to each keybind
         _upKey = InputSystem.actions.FindAction("Up");
         _downKey = InputSystem.actions.FindAction("Down");
         _leftKey = InputSystem.actions.FindAction("Left");
