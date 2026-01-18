@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreMult: 10
-  loopingMusic: {fileID: 0}
-  enemyDeathSound: {fileID: 0}
-  enemyDeathPitchVariation: 0
+  loopingMusic: {fileID: 8300000, guid: 95fcef63502f149f086d1867dc72670c, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 18536d62ff78c43d2ae66c99ee640d96, type: 3}
+  enemyDeathPitchVariation: 1
   sfxSource: {fileID: 79013999}
   musicSource: {fileID: 79013998}
 --- !u!82 &79013998
