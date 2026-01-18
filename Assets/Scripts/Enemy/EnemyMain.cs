@@ -28,6 +28,7 @@ public class EnemyMain : MonoBehaviour
     {
         GameManager.Instance.AddScore(points);
         DeathAnimation();
+        GameManager.Instance.EnemyDeathSound();
         Despawn();
     }
 
