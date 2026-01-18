@@ -18,10 +18,10 @@ public class VehicleController : MonoBehaviour
     private float _acceleration;
     private Vector2 _steeringVector;
     private float _wheelAngle;
-    private float _wheelBase;
+    private float _wheelBase; // Distance between front and back axles
     private float _rBack; // Turn radius according to the rear wheel axle
     private float _rBackMax; // Turn radius with wheels maximally angled
-    private float _shockTime;
+    private float _shockTime; // Used to pause physics when "shocked" TODO
 
     void Update()
     {
@@ -64,18 +64,23 @@ public class VehicleController : MonoBehaviour
         _velCurrent += vector;
     }
 
+    // To be called by the "brain" script in order to control the vehicle's steering
     public void Steer(float euler)
     {
         _wheelAngle = Mathf.Clamp(euler, -wheelAngleMax, wheelAngleMax);
     }
 
+    // Used by the brain to control the throttle, determining acceleration
     public void Throttle(float value)
     {
         _acceleration = Mathf.Clamp01(value) * accelerationMax;
     }
 
+    // OnValidate() is called after editing values in the inspector
+    // This is all stuff that could have been done in Start() or Awake(), but doing it here instead so gizmos always work
     void OnValidate()
     {
+        // Set the wheel base
         _wheelBase = Mathf.Abs(wheelOffsetFront) + Mathf.Abs(wheelOffsetBack);
         // _rBackMax is UNSIGNED where as _rBack is SIGNED
         _rBackMax = Mathf.Abs(_wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad));
@@ -86,33 +91,37 @@ public class VehicleController : MonoBehaviour
     {
         if (renderGizmos)
         {
+            // The next few blocks of code just compute various gizmo-related values
+            // Some could be made into properties rooted in the class rather than the function, but for the sake of simplicity
+            // I'm just keeping them this way. It would offer a negligible performance impact, and when performance
+            // is an issue, then gizmos shouldn't be enabled at all so this code would be redundant anyway.
             var rFrontMax = _wheelBase / Mathf.Sin(wheelAngleMax * Mathf.Deg2Rad);
             var rFront = _wheelBase / Mathf.Sin(_wheelAngle * Mathf.Deg2Rad);
             var turnSign = Mathf.Sign(_wheelAngle);
 
             Vector2 axleFront = transform.position + transform.up * wheelOffsetFront;
             Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
-            
             Vector2 turnPointMax = axleBack - (Vector2)transform.right * turnSign * _rBackMax;
             Vector2 turnPoint = axleBack - (Vector2)transform.right * _rBack;
             
             Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent;
             Vector2 velDesiredPos = (Vector2)transform.position + _velDesired;
 
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.red; // Shows the desired velocity and current velocity vectors
             Gizmos.DrawLine(transform.position, velCurrentPos);
             Gizmos.DrawLine(transform.position, velDesiredPos);
-            Gizmos.color = Color.yellow;
+            
+            Gizmos.color = Color.yellow; // Shows the difference between current and desired velocity vectors
             Gizmos.DrawLine(velCurrentPos, velDesiredPos);
 
-            Gizmos.color = Color.white;
+            Gizmos.color = Color.white; // Shows the direction the wheels are angled
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector * 3);
 
-            Gizmos.color = Color.magenta;
+            Gizmos.color = Color.magenta; // This is used when setting the wheel offsets
             Gizmos.DrawLine(axleFront, axleBack);
             
             // Simplified turning radius gizmos
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.green; // Draws a circle representing the turning radii, as well as a line to the back axle
             Gizmos.DrawWireSphere(turnPointMax, _rBackMax);
             Gizmos.DrawLine(axleBack,turnPointMax);
             if (Mathf.Abs(_wheelAngle) > 0f)
