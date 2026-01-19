@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8458200381290885872}
   - component: {fileID: 2212926975985281344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5579457394818418371}
   - component: {fileID: 3161491755812059019}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,9 +161,9 @@ GameObject:
   - component: {fileID: 4763151334292231804}
   - component: {fileID: 7584789122177334371}
   - component: {fileID: 6435543665769808126}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Truck
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5643295376650425051}
   - component: {fileID: 5966200742968268886}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2510805784076205577}
   - component: {fileID: 197090366305413741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6704642559816040298}
   - component: {fileID: 8937568369724469241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6346994570907588041}
   - component: {fileID: 5761410698111052848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

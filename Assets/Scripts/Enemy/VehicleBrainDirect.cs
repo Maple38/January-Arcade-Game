@@ -7,7 +7,7 @@ public class VehicleBrainDirect : MonoBehaviour
     private Vector2 _targetDir;
     private bool _controlTargetWithMouse = true;  // Controls mouse control, which I'm using for debugging
 
-    void Start()
+    void Awake()
     {
         _controller = GetComponent<VehicleController>(); // The script used to control the vehicle and calculate physics
     }
