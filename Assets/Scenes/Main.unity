@@ -895,7 +895,7 @@ MonoBehaviour:
   bounds:
     m_Center: {x: 15.9, y: 0, z: 0}
     m_Extent: {x: 5.51, y: 7.48, z: 0}
-  spawnDelay: 0.5
+  spawnDelay: 4
   enemyPrefabs:
   - {fileID: 6873681565396144741, guid: 4f049c7798a814ad7a6c96dcb1823272, type: 3}
   - {fileID: 4218362900458474849, guid: 1ee711bb40b124e94922a97f72b7f068, type: 3}
