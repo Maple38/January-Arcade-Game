@@ -1,9 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class HealthbarController : MonoBehaviour
 {
     private HeartController[] _hearts;
+    [SerializeField] private int testHealthValue; // For debugging purposes
 
+    // For debugging purposes
+    [ContextMenu("Apply Test Value")] 
+    void TestHealth()
+    {
+        UpdateHearts(testHealthValue);
+    }
+    
     void Start()
     {
         _hearts = GetComponentsInChildren<HeartController>();
@@ -11,6 +21,7 @@ public class HealthbarController : MonoBehaviour
 
     public void UpdateHearts(int health)
     {
+        // Loops through each heart and allocates health to it
         foreach (HeartController heart in _hearts)
         {
             switch (health)
