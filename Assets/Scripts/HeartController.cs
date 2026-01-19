@@ -5,7 +5,7 @@ public class HeartController : MonoBehaviour
     private Animator _animator;
     private int _propertyHash;
     
-    void Start()
+    void Awake()
     {
         _animator = GetComponent<Animator>();
         _propertyHash = Animator.StringToHash("State"); // Hash this for efficiency

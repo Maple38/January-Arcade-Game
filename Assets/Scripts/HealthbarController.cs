@@ -12,7 +12,7 @@ public class HealthbarController : MonoBehaviour
         UpdateHearts(testHealthValue);
     }
     
-    void Start()
+    void Awake()
     {
         _hearts = GetComponentsInChildren<HeartController>();
     }

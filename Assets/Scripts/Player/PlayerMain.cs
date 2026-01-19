@@ -20,9 +20,14 @@ public class PlayerMain : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _health = maxHealth;
         _kbPower = kbPowerDefault;
-        healthbar.UpdateHearts(_health); // Make sure the correct number of hearts are displayed
     }
 
+    private void Start()
+    {
+        // Running this in Start() so the healthbar script can load references to the hearts in Awake()
+        healthbar.UpdateHearts(_health); // Make sure the correct number of hearts are displayed
+    }
+    
     private void Update()
     {
         if (_iFrames > 0)
