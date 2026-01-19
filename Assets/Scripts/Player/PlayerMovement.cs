@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float impulseSpeed; // The strength to "impulse" the player by when a key is pressed
     [SerializeField] private Vector2 impulseAxisMults; // The X and Y multipliers for impulses
     [DoNotSerialize] public float speedMult = 1; // Public variable, allows for other scripts to adjust the speed
+    [SerializeField] private bool doNotRotate;
     private Rigidbody2D _rb;
+    private Quaternion _initialRotation;
     private Animator _anim;
     private int _doBoostHash;
 
@@ -16,10 +18,17 @@ public class PlayerMovement : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
-
+        _initialRotation = transform.rotation;
         _doBoostHash = Animator.StringToHash("doBoost");
     }
 
+    private void LateUpdate()
+    {
+        if (doNotRotate)
+        {
+            transform.rotation = _initialRotation;
+        }
+    }
 
     // Triggered by an external script that handles inputs
     public void Impulse(float impulseAngle)
