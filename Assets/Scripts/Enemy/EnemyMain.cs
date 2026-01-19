@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemyMain : MonoBehaviour
@@ -9,8 +10,7 @@ public class EnemyMain : MonoBehaviour
     public int contactDamage;
     private int _health;
     private VehicleController _vehicle;
-    private int _powerupChance;
-    [SerializeField] private GameObject powerupPrefab;
+    [SerializeField] private int powerupChance;
 
     private void Awake()
     {
@@ -47,11 +47,11 @@ public class EnemyMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected virtual void SpawnPowerup()
+    protected virtual void TrySpawnPowerup()
     {
-        if (Random.Range(0, _powerupChance) == _powerupChance)
+        if (Random.Range(0, powerupChance) == powerupChance)
         {
-            Instantiate(powerupPrefab, transform.position, quaternion.identity);
+            GameManager.Instance.SpawnPowerup(transform.position);
         }
     }
 

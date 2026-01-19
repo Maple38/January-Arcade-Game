@@ -1,7 +1,9 @@
 using System.Collections;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string scorePrefix;
     [SerializeField] private GameObject loseText;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject powerupPrefab;
     public float globalScrollSpeed;
     public static GameManager Instance { get; private set; }
     public int Score { get; private set; }
@@ -79,6 +82,11 @@ public class GameManager : MonoBehaviour
     public Vector2 FetchPlayerPos()
     {
         return player.transform.position;
+    }
+
+    public void SpawnPowerup(Vector2 pos)
+    {
+        Instantiate(powerupPrefab, pos, quaternion.identity);
     }
 
     // For testing

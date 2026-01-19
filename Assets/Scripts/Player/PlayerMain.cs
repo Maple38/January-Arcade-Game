@@ -39,10 +39,10 @@ public class PlayerMain : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        var enemy = other.gameObject;
-        if (enemy.CompareTag("Enemy"))
+        var otherGameObject = other.gameObject;
+        if (otherGameObject.CompareTag("Enemy"))
         {
-            var enemyMain = enemy.GetComponent<EnemyMain>();
+            var enemyMain = otherGameObject.GetComponent<EnemyMain>();
             // If the player is ramming, don't take damage
             if (_playerAttack.RamInProgress)
             {
@@ -60,6 +60,11 @@ public class PlayerMain : MonoBehaviour
                 var collisionAngle = Vector2.Angle(transform.position, other.transform.position) * Mathf.Deg2Rad;
                 enemyMain.Knockback(new Vector2(Mathf.Cos(collisionAngle), Mathf.Sin(collisionAngle) * _kbPower));
             }
+        }
+        else if (otherGameObject.CompareTag("Powerup"))
+        {
+            Destroy(otherGameObject);
+            GameManager.Instance.AddScore(50);
         }
     }
 

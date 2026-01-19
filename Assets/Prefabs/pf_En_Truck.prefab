@@ -199,6 +199,7 @@ MonoBehaviour:
   maxHealth: 4
   points: 25
   contactDamage: 2
+  powerupChance: 2
 --- !u!114 &4763151334292231804
 MonoBehaviour:
   m_ObjectHideFlags: 0

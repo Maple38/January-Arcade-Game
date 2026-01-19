@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Slowdown
+  - Powerup
   layers:
   - Default
   - TransparentFX

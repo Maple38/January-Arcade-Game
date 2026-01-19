@@ -176,6 +176,7 @@ MonoBehaviour:
   scorePrefix: 'Score: '
   loseText: {fileID: 499706178}
   player: {fileID: 1120426125}
+  powerupPrefab: {fileID: 0}
   globalScrollSpeed: 2
 --- !u!82 &79013998
 AudioSource:
