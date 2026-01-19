@@ -19,9 +19,11 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefabs[Random.Range(0, _prefabCount)],
-                new Vector3(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y), 0),
-                Quaternion.identity);
+            var prefab = enemyPrefabs[Random.Range(0, _prefabCount)];
+            var pos = new Vector3(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y),
+                0);
+            // Instantiate the prefab, preserving the preset rotation
+            Instantiate(prefab, pos, prefab.transform.rotation);
             yield return new WaitForSeconds(spawnDelay);
         }
     }
