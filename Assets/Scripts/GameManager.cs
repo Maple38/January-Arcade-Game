@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private string scorePrefix;
     [SerializeField] private GameObject loseText;
+    public float GlobalScrollSpeed { get; private set; }
 
     private void Awake()
     {
