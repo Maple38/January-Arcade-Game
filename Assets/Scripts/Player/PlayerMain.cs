@@ -100,6 +100,6 @@ public class PlayerMain : MonoBehaviour
     private void Death()
     {
         GameManager.Instance.TriggerLoss();
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

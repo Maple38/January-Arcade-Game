@@ -40,7 +40,7 @@ public class EnemyMain : MonoBehaviour
     // Separated from Death(), this function handles cleanup and cleanly getting rid of the object, without extras
     public void Despawn()
     {
-        
+        Destroy(gameObject);
     }
 
     public void Knockback(Vector2 vector)
