@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private string scorePrefix;
+    [SerializeField] private GameObject loseText;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        loseText.SetActive(false);
         PlayMusic(loopingMusic);
     }
 
@@ -57,6 +60,12 @@ public class GameManager : MonoBehaviour
     public void EnemyDeathSound()
     {
         PlaySfx(enemyDeathSound, Random.Range(-enemyDeathPitchVariation, enemyDeathPitchVariation));
+    }
+
+    public void TriggerLoss()
+    {
+        loseText.SetActive(true);   
+        musicSource.Stop();
     }
 
     // For testing
