@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemyDeathPitchVariation;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private GameObject scoreTextObject;
+    [SerializeField] private string scorePrefix;
+    private TextMeshPro _scoreTextTMP;
 
     private void Awake()
     {
@@ -22,7 +26,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _scoreTextTMP = scoreTextObject.GetComponent<TextMeshPro>();
         PlayMusic(loopingMusic);
+    }
+
+    void LateUpdate()
+    {
+        _scoreTextTMP.text = scorePrefix + Score.ToString("D5");
     }
 
     private void PlayMusic(AudioClip clip)
