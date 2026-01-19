@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7092268097782488642}
   - component: {fileID: 3079131500572870583}
   - component: {fileID: 2906599267519529188}
-  - component: {fileID: 4326852849547167924}
   - component: {fileID: 7992980877535774299}
   - component: {fileID: 3665916764780363224}
+  - component: {fileID: 6178063939610773571}
+  - component: {fileID: 7448986631114886548}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 1576459397
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8900878406782297486, guid: 702726696a62f4d93bf605f14c3ab083, type: 3}
+  m_Sprite: {fileID: 1514390884368667404, guid: db03f47652a014ea6a4169ff25e0c701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,6 +111,7 @@ MonoBehaviour:
   maxHealth: 3
   contactDamage: 1
   kbPowerDefault: 1
+  healthbar: {fileID: 0}
 --- !u!114 &7092268097782488642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +179,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4326852849547167924
+--- !u!114 &7992980877535774299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3990891937338428884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa98685e9f1a74e1d88f34d7a365e85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 8.23, y: 4.93, z: 0}
+  boundaryEnabled: 1
+--- !u!114 &3665916764780363224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3990891937338428884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ea6aaa70eec4bf3a49c661491ffc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &6178063939610773571
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,43 +241,37 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.13499999}
+  m_Offset: {x: 0, y: 1.09375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: -0.04}
-    oldSize: {x: 1.125, y: 1.5625}
+    pivot: {x: 0.5, y: -0.17307693}
+    oldSize: {x: 1.25, y: 1.625}
     newSize: {x: 1.125, y: 1.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.18, y: 0.24999999}
+  m_Size: {x: 1.25, y: 1.625}
   m_EdgeRadius: 0
---- !u!114 &7992980877535774299
-MonoBehaviour:
+--- !u!95 &7448986631114886548
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3990891937338428884}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa98685e9f1a74e1d88f34d7a365e85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 8.23, y: 4.93, z: 0}
-  boundaryEnabled: 1
---- !u!114 &3665916764780363224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3990891937338428884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ea6aaa70eec4bf3a49c661491ffc16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: -5054002550821083077, guid: db03f47652a014ea6a4169ff25e0c701, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
