@@ -562,7 +562,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 2dba33f57af81494ba867654d9ff6938, type: 3}
       propertyPath: m_Name
-      value: spr_ui_lose
+      value: LoseText
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 2dba33f57af81494ba867654d9ff6938, type: 3}
       propertyPath: m_SortingLayer
