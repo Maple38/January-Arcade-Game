@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+
+        _doBoostHash = Animator.StringToHash("doBoost");
     }
 
 
@@ -32,6 +34,6 @@ public class PlayerMovement : MonoBehaviour
         _rb.AddForce(force,
             ForceMode2D.Impulse);
 
-        _anim.SetTrigger("doBoost");
+        _anim.SetTrigger(_doBoostHash);
     }
 }
