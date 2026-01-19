@@ -70,11 +70,11 @@ public class PlayerAttack : MonoBehaviour
     // Scan for targets
     private void TargetScan()
     {
-        var zRotation = (transform.localEulerAngles.z + 90) * Mathf.Deg2Rad;
+        var scanDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         // Fire a ray and save its hit info to scanResult
         var scanResult = Physics2D.Raycast
         (new Vector2(transform.position.x, transform.position.y),
-            new Vector2(Mathf.Cos(zRotation), Mathf.Sin(zRotation)),
+            scanDirection,
             scanRange, layerMask);
         // If the scanResult includes a collider this will be true, indicating a successful hit
         if (scanResult.collider)
