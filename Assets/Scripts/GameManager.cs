@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private string scorePrefix;
     [SerializeField] private GameObject loseText;
-    public float GlobalScrollSpeed { get; private set; }
+    public float globalScrollSpeed;
 
     private void Awake()
     {
