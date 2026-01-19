@@ -532,15 +532,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Modifier",
-                    "type": "Button",
-                    "id": "779eeeb9-cc2b-48c9-84c2-7f23dcaa905e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Left",
                     "type": "Button",
                     "id": "684faa7b-edce-4ebc-878f-8c638b7402db",
@@ -591,12 +582,23 @@
                 },
                 {
                     "name": "",
-                    "id": "d67e8ea7-b088-4d0c-84fb-495a6a05d23a",
-                    "path": "<Keyboard>/shift",
+                    "id": "f62305c4-8913-4622-93a8-7d91473ece03",
+                    "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Modifier",
+                    "groups": ";Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54d35430-11eb-48f8-9d44-040bae636df4",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -607,6 +609,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f70ad717-fa5b-41ed-abf0-545eaae135ab",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -624,6 +637,17 @@
                 },
                 {
                     "name": "",
+                    "id": "231186ae-590b-4cba-987e-f660194b7c5a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8b787127-5fe3-40e4-8dec-0efc4e084dcf",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -635,11 +659,33 @@
                 },
                 {
                     "name": "",
+                    "id": "67c6a42a-66bb-4002-9166-2ae3916892fb",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2574697d-68b0-4093-bfa1-1d3f1bcec6f6",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69fa55a1-2901-42da-8f43-ab1889b784a4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
