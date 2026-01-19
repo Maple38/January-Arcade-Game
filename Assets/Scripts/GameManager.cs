@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private string scorePrefix;
     [SerializeField] private GameObject loseText;
+    [SerializeField] private GameObject player;
     public float globalScrollSpeed;
 
     private void Awake()
@@ -68,6 +69,11 @@ public class GameManager : MonoBehaviour
     {
         loseText.SetActive(true);   
         musicSource.Stop();
+    }
+
+    public Vector2 FetchPlayerPos()
+    {
+        return player.transform.position;
     }
 
     // For testing

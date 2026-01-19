@@ -5,7 +5,7 @@ public class VehicleBrainDirect : MonoBehaviour
     private Vector2 _targetPos;
     private VehicleController _controller;
     private Vector2 _targetDir;
-    private bool _controlTargetWithMouse = true;  // Controls mouse control, which I'm using for debugging
+    // private bool _controlTargetWithMouse = true;  // Controls mouse control, which I'm using for debugging
 
     void Awake()
     {
@@ -17,15 +17,21 @@ public class VehicleBrainDirect : MonoBehaviour
         _controller.Throttle(1); // For now just setting the throttle to maximum always
         _controller.Steer(CalculateSteering()); // Steer in the determined direction
         
-        if (Input.GetMouseButtonDown(0)) // Click to toggle controlling the target position with the mouse
-        {
-            _controlTargetWithMouse = !_controlTargetWithMouse;
-        }
+        
+        // Mouse based steering
+        // if (Input.GetMouseButtonDown(0)) // Click to toggle controlling the target position with the mouse
+        // {
+        //     _controlTargetWithMouse = !_controlTargetWithMouse;
+        // }
+        // if (_controlTargetWithMouse) // If true then the target follows the mouse
+        // {
+        //     _targetPos = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        // }
+    }
 
-        if (_controlTargetWithMouse) // If true then the target follows the mouse
-        {
-            _targetPos = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+    void FixedUpdate()
+    {
+        _targetPos = GameManager.Instance.FetchPlayerPos();
     }
 
     // Returns a normalized Vector2 representing the direction of the target relative to the object

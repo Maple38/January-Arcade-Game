@@ -175,6 +175,7 @@ MonoBehaviour:
   scoreText: {fileID: 1609866712}
   scorePrefix: 'Score: '
   loseText: {fileID: 499706178}
+  player: {fileID: 1120426125}
   globalScrollSpeed: 1
 --- !u!82 &79013998
 AudioSource:
@@ -1145,6 +1146,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1120426125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990891937338428884, guid: 1b64a1432b9434cddb7ba65ee3d47fa4, type: 3}
+  m_PrefabInstance: {fileID: 1970314278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1193559868
 GameObject:
   m_ObjectHideFlags: 0
