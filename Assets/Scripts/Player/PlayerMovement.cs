@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 impulseAxisMults; // The X and Y multipliers for impulses
     [DoNotSerialize] public float speedMult = 1; // Public variable, allows for other scripts to adjust the speed
     private Rigidbody2D _rb;
+    private Animator _anim;
+    private int _doBoostHash;
 
     private void Start()
     {
+        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,5 +31,7 @@ public class PlayerMovement : MonoBehaviour
         // ...and apply it
         _rb.AddForce(force,
             ForceMode2D.Impulse);
+
+        _anim.SetTrigger("doBoost");
     }
 }
