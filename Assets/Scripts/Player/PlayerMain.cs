@@ -4,9 +4,10 @@ public class PlayerMain : MonoBehaviour
 {
     [SerializeField] private float damageCooldown; // Time the player is invulnerable for after taking damage
     [SerializeField]
-    private int maxHealth; // This is the maximum health value. I dearly hope this doesn't need any further explaining.
+    private int maxHealth = 6; // This is the maximum health value. I dearly hope this doesn't need any further explaining.
     [SerializeField] private int contactDamage; // The amount of damage enemies should take on collision
     [SerializeField] private float kbPowerDefault; // The knockback to apply to enemies on collision
+    [SerializeField] private HealthbarController healthbar; // Reference to the healthbar
     private int _health;
     private float _iFrames; // Not actually measured in frames, it's measured in time
     private float _kbPower; // The knockback power actually used by knockback code. Might be modified by powerups.
@@ -19,6 +20,7 @@ public class PlayerMain : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _health = maxHealth;
         _kbPower = kbPowerDefault;
+        healthbar.UpdateHearts(_health); // Make sure the correct number of hearts are displayed
     }
 
     private void Update()
@@ -83,6 +85,7 @@ public class PlayerMain : MonoBehaviour
     {
         Invincibility(damageCooldown);
         _health += Mathf.Clamp(_health + amount, 0, maxHealth);
+        healthbar.UpdateHearts(_health);
         if (_health <= 0)
         {
             Death();
