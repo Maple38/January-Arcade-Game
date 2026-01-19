@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-    private PlayerMain _playerMain;
-
     [Header("Targeting")]
     [SerializeField] private float targetingRange; // The range that the enemy must be in to be targeted
     [SerializeField] private LayerMask layerMask; // Layers to target with the ram attack
     [SerializeField] private float scanRange; // Range of the raycast that looks for targets
-    [SerializeField] private GameObject crosshairObject; // GameObject for the crosshair TODO: Make this a prefab and spawn at script start
-    private float _targetingGracePeriod; // If the target leaves the crosshair momentarily, attack should stay prepped
-    private Vector2 _targetPos;
-    private bool _targetReady;
-    private SpriteRenderer _crosshairSr;
+    [SerializeField]
+    private GameObject
+        crosshairObject; // GameObject for the crosshair TODO: Make this a prefab and spawn at script start
 
     [Header("Ramming")]
     [SerializeField] private float ramChargeMin; // Minimum charge time before the ram attack is ready
@@ -25,8 +20,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float ramCooldownMax; // Ram attack cooldown time
     [DoNotSerialize] public float ramChargeMult = 1; // Public so powerups can change it
     [SerializeField] private float ramSpeedMult; // Multiplier for ramming movement speed
+    private SpriteRenderer _crosshairSr;
+    private PlayerMain _playerMain;
     private float _ramCharge; // Progress in charging up the ram attack at any given moment
     private float _ramCooldownCurrent;
+    private Rigidbody2D _rb;
+    private float _targetingGracePeriod; // If the target leaves the crosshair momentarily, attack should stay prepped
+    private Vector2 _targetPos;
+    private bool _targetReady;
 
     // We want PlayerMain.cs to be able to access these, but not change them
     public int RamPowerCurrent { get; private set; }
@@ -84,7 +85,8 @@ public class PlayerAttack : MonoBehaviour
             crosshairObject.transform.position = _targetPos;
             _crosshairSr.enabled = true;
             _targetReady = true; // We have a target currently in sight and in range
-            _targetingGracePeriod = 0.2f; // Give a 200ms grace period in which the target could disappear without disrupting anything
+            _targetingGracePeriod =
+                0.2f; // Give a 200ms grace period in which the target could disappear without disrupting anything
         }
         else
         {
@@ -122,11 +124,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 // ...check if it meets the maximum too...
                 if (_ramCharge >= ramChargeMax)
-                { // ... if so then we set the ram power to a high value...
+                {
+                    // ... if so then we set the ram power to a high value...
                     RamPowerCurrent = ramPowerMax;
                 }
                 else
-                { // ...but if not, a low value.
+                {
+                    // ...but if not, a low value.
                     RamPowerCurrent = ramPowerMin;
                 }
 

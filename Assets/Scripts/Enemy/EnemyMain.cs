@@ -5,14 +5,14 @@ public class EnemyMain : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int points;
     public int contactDamage;
-    private VehicleController _vehicle;
     private int _health;
+    private VehicleController _vehicle;
 
     private void Awake()
     {
         _health = maxHealth;
         // If the enemy is a vehicle, grab a reference to the controller
-        TryGetComponent<VehicleController>(out _vehicle);
+        TryGetComponent(out _vehicle);
     }
 
     public void Damage(int amount)
@@ -36,7 +36,7 @@ public class EnemyMain : MonoBehaviour
     {
         // TODO
     }
-    
+
     // Separated from Death(), this function handles cleanup and cleanly getting rid of the object, without extras
     public void Despawn()
     {

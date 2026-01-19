@@ -4,7 +4,8 @@ public class PlayerMain : MonoBehaviour
 {
     [SerializeField] private float damageCooldown; // Time the player is invulnerable for after taking damage
     [SerializeField]
-    private int maxHealth = 6; // This is the maximum health value. I dearly hope this doesn't need any further explaining.
+    private int
+        maxHealth = 6; // This is the maximum health value. I dearly hope this doesn't need any further explaining.
     [SerializeField] private int contactDamage; // The amount of damage enemies should take on collision
     [SerializeField] private float kbPowerDefault; // The knockback to apply to enemies on collision
     [SerializeField] private HealthbarController healthbar; // Reference to the healthbar
@@ -27,28 +28,12 @@ public class PlayerMain : MonoBehaviour
         // Running this in Start() so the healthbar script can load references to the hearts in Awake()
         healthbar.UpdateHearts(_health); // Make sure the correct number of hearts are displayed
     }
-    
+
     private void Update()
     {
         if (_iFrames > 0)
         {
             _iFrames -= Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Slowdown"))
-        {
-            _playerMovement.speedMult = 0.5f;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Slowdown"))
-        {
-            _playerMovement.speedMult = 1f;
         }
     }
 
@@ -75,6 +60,22 @@ public class PlayerMain : MonoBehaviour
                 var collisionAngle = Vector2.Angle(transform.position, other.transform.position) * Mathf.Deg2Rad;
                 enemyMain.Knockback(new Vector2(Mathf.Cos(collisionAngle), Mathf.Sin(collisionAngle) * _kbPower));
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Slowdown"))
+        {
+            _playerMovement.speedMult = 0.5f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Slowdown"))
+        {
+            _playerMovement.speedMult = 1f;
         }
     }
 

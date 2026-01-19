@@ -15,6 +15,12 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnRoutine());
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(bounds.center, bounds.size);
+    }
+
     private IEnumerator SpawnRoutine()
     {
         while (true)
@@ -26,11 +32,5 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(prefab, pos, prefab.transform.rotation);
             yield return new WaitForSeconds(spawnDelay);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireCube(bounds.center, bounds.size);
     }
 }

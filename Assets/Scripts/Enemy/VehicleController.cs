@@ -7,29 +7,29 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float accelerationMax;
     [SerializeField] private float speedMax;
     [SerializeField] private float wheelAngleMax;
-    
+
     [Header("Other Configs")]
     [SerializeField] private bool renderGizmos;
     [SerializeField] private float wheelOffsetFront;
     [SerializeField] private float wheelOffsetBack;
-    
-    private Vector2 _velDesired;
-    private Vector2 _velCurrent;
     private float _acceleration;
-    private Vector2 _steeringVector;
-    private float _wheelAngle;
-    private float _wheelBase; // Distance between front and back axles
     private float _rBack; // Turn radius according to the rear wheel axle
     private float _rBackMax; // Turn radius with wheels maximally angled
     private float _shockTime; // Used to pause physics when "shocked" TODO
+    private Vector2 _steeringVector;
+    private Vector2 _velCurrent;
+
+    private Vector2 _velDesired;
+    private float _wheelAngle;
+    private float _wheelBase; // Distance between front and back axles
 
 
     private void Awake()
     {
         CalculateDimensions();
     }
-    
-    void Update()
+
+    private void Update()
     {
         // Calculate the turning radius based on Ackerman's formula thingy
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
@@ -39,6 +39,57 @@ public class VehicleController : MonoBehaviour
         {
             CalculatePhysics();
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (renderGizmos)
+        {
+            // The next few blocks of code just compute various gizmo-related values
+            // Some could be made into properties rooted in the class rather than the function, but for the sake of simplicity
+            // I'm just keeping them this way. It would offer a negligible performance impact, and when performance
+            // is an issue, then gizmos shouldn't be enabled at all so this code would be redundant anyway.
+            var rFrontMax = _wheelBase / Mathf.Sin(wheelAngleMax * Mathf.Deg2Rad);
+            var rFront = _wheelBase / Mathf.Sin(_wheelAngle * Mathf.Deg2Rad);
+            var turnSign = Mathf.Sign(_wheelAngle);
+
+            Vector2 axleFront = transform.position + transform.up * wheelOffsetFront;
+            Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
+            var turnPointMax = axleBack - (Vector2)transform.right * turnSign * _rBackMax;
+            var turnPoint = axleBack - (Vector2)transform.right * _rBack;
+
+            var velCurrentPos = (Vector2)transform.position + _velCurrent;
+            var velDesiredPos = (Vector2)transform.position + _velDesired;
+
+            Gizmos.color = Color.red; // Shows the desired velocity and current velocity vectors
+            Gizmos.DrawLine(transform.position, velCurrentPos);
+            Gizmos.DrawLine(transform.position, velDesiredPos);
+
+            Gizmos.color = Color.yellow; // Shows the difference between current and desired velocity vectors
+            Gizmos.DrawLine(velCurrentPos, velDesiredPos);
+
+            Gizmos.color = Color.white; // Shows the direction the wheels are angled
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector * 3);
+
+            Gizmos.color = Color.magenta; // This is used when setting the wheel offsets
+            Gizmos.DrawLine(axleFront, axleBack);
+
+            // Simplified turning radius gizmos
+            Gizmos.color =
+                Color.green; // Draws a circle representing the turning radii, as well as a line to the back axle
+            Gizmos.DrawWireSphere(turnPointMax, _rBackMax);
+            Gizmos.DrawLine(axleBack, turnPointMax);
+            if (Mathf.Abs(_wheelAngle) > 0f)
+            {
+                Gizmos.DrawWireSphere(turnPoint, Mathf.Abs(_rBack));
+            }
+        }
+    }
+
+    // OnValidate() is called after editing values in the inspector
+    private void OnValidate()
+    {
+        CalculateDimensions();
     }
 
     private void CalculatePhysics()
@@ -56,7 +107,7 @@ public class VehicleController : MonoBehaviour
         transform.position += (Vector3)(_velCurrent * Time.deltaTime);
 
         // Don't want to divide by zero, and we can skip this calculation anyway if the wheels are straight
-        if (!Mathf.Approximately(_wheelAngle, 0)) 
+        if (!Mathf.Approximately(_wheelAngle, 0))
         {
             // Rotation of a moving vehicle = distance delta / turning radius
             // Note: Rotation is calculated in radians, needs to be converted to degrees
@@ -89,55 +140,5 @@ public class VehicleController : MonoBehaviour
         // _rBackMax is UNSIGNED where as _rBack is SIGNED
         _rBackMax = Mathf.Abs(_wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad));
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
-    }
-    
-    // OnValidate() is called after editing values in the inspector
-    void OnValidate()
-    {
-        CalculateDimensions();
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        if (renderGizmos)
-        {
-            // The next few blocks of code just compute various gizmo-related values
-            // Some could be made into properties rooted in the class rather than the function, but for the sake of simplicity
-            // I'm just keeping them this way. It would offer a negligible performance impact, and when performance
-            // is an issue, then gizmos shouldn't be enabled at all so this code would be redundant anyway.
-            var rFrontMax = _wheelBase / Mathf.Sin(wheelAngleMax * Mathf.Deg2Rad);
-            var rFront = _wheelBase / Mathf.Sin(_wheelAngle * Mathf.Deg2Rad);
-            var turnSign = Mathf.Sign(_wheelAngle);
-
-            Vector2 axleFront = transform.position + transform.up * wheelOffsetFront;
-            Vector2 axleBack = transform.position + transform.up * wheelOffsetBack;
-            Vector2 turnPointMax = axleBack - (Vector2)transform.right * turnSign * _rBackMax;
-            Vector2 turnPoint = axleBack - (Vector2)transform.right * _rBack;
-            
-            Vector2 velCurrentPos = (Vector2)transform.position + _velCurrent;
-            Vector2 velDesiredPos = (Vector2)transform.position + _velDesired;
-
-            Gizmos.color = Color.red; // Shows the desired velocity and current velocity vectors
-            Gizmos.DrawLine(transform.position, velCurrentPos);
-            Gizmos.DrawLine(transform.position, velDesiredPos);
-            
-            Gizmos.color = Color.yellow; // Shows the difference between current and desired velocity vectors
-            Gizmos.DrawLine(velCurrentPos, velDesiredPos);
-
-            Gizmos.color = Color.white; // Shows the direction the wheels are angled
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + _steeringVector * 3);
-
-            Gizmos.color = Color.magenta; // This is used when setting the wheel offsets
-            Gizmos.DrawLine(axleFront, axleBack);
-            
-            // Simplified turning radius gizmos
-            Gizmos.color = Color.green; // Draws a circle representing the turning radii, as well as a line to the back axle
-            Gizmos.DrawWireSphere(turnPointMax, _rBackMax);
-            Gizmos.DrawLine(axleBack,turnPointMax);
-            if (Mathf.Abs(_wheelAngle) > 0f)
-            {
-                Gizmos.DrawWireSphere(turnPoint, Mathf.Abs(_rBack));
-            }
-        }
     }
 }

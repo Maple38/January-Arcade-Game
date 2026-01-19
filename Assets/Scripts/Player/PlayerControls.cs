@@ -1,17 +1,15 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    private PlayerAttack _playerAttack;
-    private PlayerMovement _playerMovement;
-    
     private InputAction _attackKey;
-    private InputAction _upKey;
     private InputAction _downKey;
     private InputAction _leftKey;
+    private PlayerAttack _playerAttack;
+    private PlayerMovement _playerMovement;
     private InputAction _rightKey;
+    private InputAction _upKey;
 
     private void Start()
     {
@@ -37,7 +35,7 @@ public class PlayerControls : MonoBehaviour
             _playerMovement.Impulse(180);
         }
 
-        
+
         if (_leftKey.WasPressedThisFrame())
         {
             _playerMovement.Impulse(90);
@@ -48,7 +46,6 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        
         if (_attackKey.IsPressed())
         {
             _playerAttack.ChargeRam();

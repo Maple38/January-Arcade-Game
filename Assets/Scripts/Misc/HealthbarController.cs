@@ -2,26 +2,25 @@ using UnityEngine;
 
 public class HealthbarController : MonoBehaviour
 {
-    private HeartController[] _hearts;
     [SerializeField] private int testHealthValue; // For debugging purposes
+    private HeartController[] _hearts;
 
-    // For debugging purposes, set testHealthValue in the inspector, right-click the component, and choose this to run the function
-    [ContextMenu("Apply Test Value")] 
-    void TestHealth()
-    {
-        UpdateHearts(testHealthValue);
-    }
-    
-    void Awake()
+    private void Awake()
     {
         _hearts = GetComponentsInChildren<HeartController>();
+    }
+
+    // For debugging purposes, set testHealthValue in the inspector, right-click the component, and choose this to run the function
+    [ContextMenu("Apply Test Value")]
+    private void TestHealth()
+    {
+        UpdateHearts(testHealthValue);
     }
 
     public void UpdateHearts(int health)
     {
         // Loops through each heart and allocates health to it
-        foreach (HeartController heart in _hearts)
-        {
+        foreach (var heart in _hearts)
             switch (health)
             {
                 // If there's 2 or more health remaining, show this heart as full and get rid of 2hp from the pool
@@ -39,15 +38,11 @@ public class HealthbarController : MonoBehaviour
                     heart.SetState(0);
                     break;
             }
-        }
-        
+
         // Use the first heart in the array to determine the animation progress to be used for the rest
         var animTime = _hearts[0].GetTime();
         // Loop through the remaining hearts, overriding their animation progress to be in sync.
         // When the animation switches, it also restarts, leading to the hearts not being in sync. This fixes that.
-        for (int i = 1; i < _hearts.Length; i++)
-        {
-            _hearts[i].SyncTime(animTime);
-        }
+        for (var i = 1; i < _hearts.Length; i++) _hearts[i].SyncTime(animTime);
     }
 }

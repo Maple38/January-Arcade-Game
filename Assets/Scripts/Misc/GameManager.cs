@@ -1,16 +1,9 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int scoreMult = 10;
-    public static GameManager Instance { get; private set; }
-    public int Score { get; private set; }
-    public int Difficulty { get; private set; } = 1;
 
     [Header("SFX Config")]
     [SerializeField] private AudioClip loopingMusic;
@@ -23,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject loseText;
     [SerializeField] private GameObject player;
     public float globalScrollSpeed;
+    public static GameManager Instance { get; private set; }
+    public int Score { get; private set; }
+    public int Difficulty { get; private set; } = 1;
 
     private void Awake()
     {
@@ -35,7 +31,7 @@ public class GameManager : MonoBehaviour
         PlayMusic(loopingMusic);
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         scoreText.text = scorePrefix + Score.ToString("D5");
     }
@@ -67,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerLoss()
     {
-        loseText.SetActive(true);   
+        loseText.SetActive(true);
         musicSource.Stop();
     }
 

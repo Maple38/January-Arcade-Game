@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class VehicleBrainDirect : MonoBehaviour
 {
-    private Vector2 _targetPos;
     private VehicleController _controller;
     private Vector2 _targetDir;
+    private Vector2 _targetPos;
     // private bool _controlTargetWithMouse = true;  // Controls mouse control, which I'm using for debugging
 
-    void Awake()
+    private void Awake()
     {
         _controller = GetComponent<VehicleController>(); // The script used to control the vehicle and calculate physics
         _targetPos = GameManager.Instance.FetchPlayerPos();
     }
 
-    void Update()
+    private void Update()
     {
         _controller.Throttle(1); // For now just setting the throttle to maximum always
         _controller.Steer(CalculateSteering()); // Steer in the determined direction
-        
-        
+
+
         // Mouse based steering
         // if (Input.GetMouseButtonDown(0)) // Click to toggle controlling the target position with the mouse
         // {
@@ -30,16 +30,9 @@ public class VehicleBrainDirect : MonoBehaviour
         // }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _targetPos = GameManager.Instance.FetchPlayerPos();
-    }
-
-    // Returns a normalized Vector2 representing the direction of the target relative to the object
-    private float CalculateSteering()
-    {
-        _targetDir = (_targetPos - (Vector2)transform.position).normalized;
-        return Vector2.SignedAngle(transform.up, _targetDir); 
     }
 
     private void OnDrawGizmos()
@@ -47,5 +40,12 @@ public class VehicleBrainDirect : MonoBehaviour
         Gizmos.color = Color.cyan; // Draws a line representing the target direction, and a dot on the target
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)_targetDir * 3);
         Gizmos.DrawSphere(_targetPos, 0.1f);
+    }
+
+    // Returns a normalized Vector2 representing the direction of the target relative to the object
+    private float CalculateSteering()
+    {
+        _targetDir = (_targetPos - (Vector2)transform.position).normalized;
+        return Vector2.SignedAngle(transform.up, _targetDir);
     }
 }

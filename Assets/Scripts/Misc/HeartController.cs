@@ -4,8 +4,8 @@ public class HeartController : MonoBehaviour
 {
     private Animator _animator;
     private int _propertyHash;
-    
-    void Awake()
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _propertyHash = Animator.StringToHash("State"); // Hash this for efficiency
@@ -22,15 +22,15 @@ public class HeartController : MonoBehaviour
     // making the glint effect not be in sync. So we use this function to sync all the hearts.
     public void SyncTime(float time)
     {
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        var stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         _animator.Play(stateInfo.fullPathHash, 0, time);
     }
-    
+
     // Gets the current progress into playing the animation clip
     public float GetTime()
     {
         // Fetch the current animation status
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        var stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         return stateInfo.normalizedTime;
     }
 }

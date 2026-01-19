@@ -1,7 +1,5 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 impulseAxisMults; // The X and Y multipliers for impulses
     [DoNotSerialize] public float speedMult = 1; // Public variable, allows for other scripts to adjust the speed
     [SerializeField] private bool doNotRotate;
-    private Rigidbody2D _rb;
-    private Quaternion _initialRotation;
     private Animator _anim;
     private int _doBoostHash;
+    private Quaternion _initialRotation;
+    private Rigidbody2D _rb;
 
     private void Start()
     {
