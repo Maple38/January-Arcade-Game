@@ -10,6 +10,7 @@ public class VehicleBrainDirect : MonoBehaviour
     void Awake()
     {
         _controller = GetComponent<VehicleController>(); // The script used to control the vehicle and calculate physics
+        _targetPos = GameManager.Instance.FetchPlayerPos();
     }
 
     void Update()

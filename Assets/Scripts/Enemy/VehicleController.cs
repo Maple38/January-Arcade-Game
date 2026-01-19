@@ -23,6 +23,12 @@ public class VehicleController : MonoBehaviour
     private float _rBackMax; // Turn radius with wheels maximally angled
     private float _shockTime; // Used to pause physics when "shocked" TODO
 
+
+    private void Awake()
+    {
+        CalculateDimensions();
+    }
+    
     void Update()
     {
         // Calculate the turning radius based on Ackerman's formula thingy
@@ -76,15 +82,19 @@ public class VehicleController : MonoBehaviour
         _acceleration = Mathf.Clamp01(value) * accelerationMax;
     }
 
-    // OnValidate() is called after editing values in the inspector
-    // This is all stuff that could have been done in Start() or Awake(), but doing it here instead so gizmos always work
-    void OnValidate()
+    private void CalculateDimensions()
     {
-        // Set the wheel base
+        // Set the wheelbase
         _wheelBase = Mathf.Abs(wheelOffsetFront) + Mathf.Abs(wheelOffsetBack);
         // _rBackMax is UNSIGNED where as _rBack is SIGNED
         _rBackMax = Mathf.Abs(_wheelBase / Mathf.Tan(wheelAngleMax * Mathf.Deg2Rad));
         _rBack = _wheelBase / Mathf.Tan(_wheelAngle * Mathf.Deg2Rad);
+    }
+    
+    // OnValidate() is called after editing values in the inspector
+    void OnValidate()
+    {
+        CalculateDimensions();
     }
 
     void OnDrawGizmosSelected()
