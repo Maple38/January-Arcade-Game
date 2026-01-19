@@ -17,8 +17,8 @@ public class ScrollingSprite : MonoBehaviour
     
     void Update()
     {
-        bg2.Translate(Vector3.down * (_scrollSpeed * Time.deltaTime));
-        bg1.Translate(Vector3.down * (_scrollSpeed * Time.deltaTime));
+        bg2.Translate(Vector3.up * (_scrollSpeed * Time.deltaTime));
+        bg1.Translate(Vector3.up * (_scrollSpeed * Time.deltaTime));
 
         if (bg1.localPosition.y <= -spriteWidth)
         {
