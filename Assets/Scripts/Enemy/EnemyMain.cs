@@ -1,4 +1,6 @@
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMain : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class EnemyMain : MonoBehaviour
     public int contactDamage;
     private int _health;
     private VehicleController _vehicle;
+    private int _powerupChance;
+    [SerializeField] private GameObject powerupPrefab;
 
     private void Awake()
     {
@@ -41,6 +45,14 @@ public class EnemyMain : MonoBehaviour
     public void Despawn()
     {
         Destroy(gameObject);
+    }
+
+    protected virtual void SpawnPowerup()
+    {
+        if (Random.Range(0, _powerupChance) == _powerupChance)
+        {
+            Instantiate(powerupPrefab, transform.position, quaternion.identity);
+        }
     }
 
     public void Knockback(Vector2 vector)
