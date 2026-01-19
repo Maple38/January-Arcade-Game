@@ -12,7 +12,7 @@ public class ScrollingSprite : MonoBehaviour
     {
         _scrollSpeed = GameManager.Instance.globalScrollSpeed;
         bg1.localPosition = Vector3.zero;
-        bg2.localPosition = new Vector3(0, spriteWidth, 0);
+        bg2.localPosition = new Vector3(0, -spriteWidth, 0);
     }
     
     void Update()
@@ -20,13 +20,13 @@ public class ScrollingSprite : MonoBehaviour
         bg2.Translate(Vector3.up * (_scrollSpeed * Time.deltaTime));
         bg1.Translate(Vector3.up * (_scrollSpeed * Time.deltaTime));
 
-        if (bg1.localPosition.y <= -spriteWidth)
+        if (bg1.localPosition.y >= spriteWidth)
         {
-            bg1.localPosition = new Vector3(0, bg2.localPosition.y + spriteWidth, 0);
+            bg1.localPosition = new Vector3(0, bg2.localPosition.y - spriteWidth, 0);
         }  
-        if (bg2.localPosition.y <= -spriteWidth)
+        if (bg2.localPosition.y >= spriteWidth)
         {
-            bg2.localPosition = new Vector3(0, bg1.localPosition.y + spriteWidth, 0);
+            bg2.localPosition = new Vector3(0, bg1.localPosition.y - spriteWidth, 0);
         }
     }
 }
