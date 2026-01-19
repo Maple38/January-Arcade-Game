@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 79013999}
   - component: {fileID: 79013998}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1905,7 +1905,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
       propertyPath: m_Name
-      value: crosshair
+      value: Crosshair
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
       propertyPath: m_Layer
@@ -1979,7 +1979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999650468}
   m_Layer: 0
-  m_Name: Road Manager
+  m_Name: RoadManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
