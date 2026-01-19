@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefabs[Random.Range(0, _prefabCount - 1)],
+            Instantiate(enemyPrefabs[Random.Range(0, _prefabCount)],
                 new Vector3(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y), 0),
                 Quaternion.identity);
             yield return new WaitForSeconds(spawnDelay);
