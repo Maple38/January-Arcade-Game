@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,6 +67,13 @@ public class GameManager : MonoBehaviour
     {
         loseText.SetActive(true);
         musicSource.Stop();
+        StartCoroutine(RestartAfterDelay(5f));
+    }
+
+    IEnumerator RestartAfterDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(0);
     }
 
     public Vector2 FetchPlayerPos()
