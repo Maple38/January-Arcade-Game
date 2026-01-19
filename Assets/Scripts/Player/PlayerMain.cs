@@ -84,7 +84,7 @@ public class PlayerMain : MonoBehaviour
     public void Damage(int amount)
     {
         Invincibility(damageCooldown);
-        _health += Mathf.Clamp(_health + amount, 0, maxHealth);
+        _health += Mathf.Clamp(_health - amount, 0, maxHealth);
         healthbar.UpdateHearts(_health);
         if (_health <= 0)
         {
