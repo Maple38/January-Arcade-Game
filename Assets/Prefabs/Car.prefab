@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130423fee6cf842a1a7e3fe5d391b819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
   points: 10
   contactDamage: 1
 --- !u!1 &8622848828281068343
