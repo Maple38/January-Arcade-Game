@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCooldown: 0.1
-  maxHealth: 3
+  maxHealth: 6
   contactDamage: 1
   kbPowerDefault: 1
   healthbar: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   scanRange: 12
-  crosshairObject: {fileID: 0}
+  crosshairObject: {fileID: -2253911629886400664, guid: fe363dad107b8466f8b98aa68d79f1a8, type: 3}
   ramChargeMin: 0.2
   ramChargeMax: 2
   ramPowerMin: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   impulseSpeed: 10
   impulseAxisMults: {x: 1, y: 1}
   speedMult: 1
+  doNotRotate: 1
 --- !u!50 &2906599267519529188
 Rigidbody2D:
   serializedVersion: 5
