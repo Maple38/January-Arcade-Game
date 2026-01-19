@@ -7,7 +7,6 @@ public class PlayerControls : MonoBehaviour
     private PlayerAttack _playerAttack;
     private PlayerMovement _playerMovement;
     
-    private InputAction _modKey;
     private InputAction _attackKey;
     private InputAction _upKey;
     private InputAction _downKey;
@@ -24,7 +23,6 @@ public class PlayerControls : MonoBehaviour
         _downKey = InputSystem.actions.FindAction("Down");
         _leftKey = InputSystem.actions.FindAction("Left");
         _rightKey = InputSystem.actions.FindAction("Right");
-        _modKey = InputSystem.actions.FindAction("Modifier");
         _attackKey = InputSystem.actions.FindAction("Attack");
     }
 
