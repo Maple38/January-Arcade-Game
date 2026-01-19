@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 7584789122177334371}
   - component: {fileID: 6435543665769808126}
   m_Layer: 6
-  m_Name: Truck
+  m_Name: pf_En_Truck
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0663ff05032e04035bf5e673f4e0cce5
+guid: 011ee6a144b214119b7cf600e9394b7a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 32
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 639044165081998830
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: blue bicycle
+  - name: spr_mine
     originalName: 
-    pivot: {x: 0.6206897, y: -0.13636364}
+    pivot: {x: 0.5, y: -0.30434784}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 29
-      height: 22
-    spriteID: 8779cfc42185643208ca870986d7c657
+      width: 22
+      height: 23
+    spriteID: 0f3d20f5dedc4407ab8d6fbc4a3642ae
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,25 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 855279909
+      value0: 478788517
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: blue bicycle
+    name: spr_mine
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: blue bicycle
+    - name: spr_Mine
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 6
-        y: 3
-        width: 29
-        height: 22
-      spriteId: 8779cfc42185643208ca870986d7c657
+        x: 5
+        y: 7
+        width: 22
+        height: 23
+      spriteId: 0f3d20f5dedc4407ab8d6fbc4a3642ae
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -182,8 +182,32 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 48, y: 48}
-  previousTextureSize: {x: 64, y: 32}
+  canvasSize: {x: 32, y: 32}
+  previousTextureSize: {x: 32, y: 32}
