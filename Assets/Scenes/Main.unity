@@ -176,7 +176,7 @@ MonoBehaviour:
   scorePrefix: 'Score: '
   loseText: {fileID: 499706178}
   player: {fileID: 1120426125}
-  globalScrollSpeed: 1
+  globalScrollSpeed: 2
 --- !u!82 &79013998
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1326,6 +1326,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: e08ec2bcdeaed40d89bc5ed260a7c489, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: e08ec2bcdeaed40d89bc5ed260a7c489, type: 3}
       propertyPath: m_SortingLayerID
       value: 392938901
       objectReference: {fileID: 0}
@@ -1339,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e08ec2bcdeaed40d89bc5ed260a7c489, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e08ec2bcdeaed40d89bc5ed260a7c489, type: 3}
       propertyPath: m_LocalRotation.w
